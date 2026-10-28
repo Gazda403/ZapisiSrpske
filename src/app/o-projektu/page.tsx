@@ -21,7 +21,6 @@ export default function AboutProjectPage() {
     <AboutProjectView
       totalWriters={stats.totalWriters}
       yearRange={stats.yearRange}
-      totalWorks={stats.totalWorks}
     />
   );
 }

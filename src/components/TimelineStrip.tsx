@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Writer } from '@/lib/types';
 import { useScript } from '@/context/ScriptContext';
 
@@ -12,34 +13,64 @@ interface TimelineStripProps {
 export default function TimelineStrip({ writers }: TimelineStripProps) {
   const { t } = useScript();
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Сортирамо по години рођења
   const sortedWriters = [...writers].sort((a, b) => a.birthYear - b.birthYear);
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="py-20 border-t border-b border-[#14213D]/15 bg-[#F4F1EA]" aria-labelledby="timeline-heading">
+    <section className="py-24 sm:py-32 border-b border-[#14213D]/15 bg-[#FBFAF7]" aria-labelledby="timeline-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-16 border-b border-[#14213D]/15">
           <div>
-            <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] block mb-2">
-              § 02 • {t('Хронологија писаца')}
+            <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-3 font-semibold">
+              § 04 • {t('Хронолошки слијед')}
             </span>
-            <h2 id="timeline-heading" className="font-serif text-3xl sm:text-4xl text-[#14213D]">
-              {t('Временска линија књижевника')}
+            <h2 id="timeline-title" className="font-serif text-4xl sm:text-6xl font-bold text-[#14213D] leading-tight">
+              {t('Временска линија аутора')}
             </h2>
           </div>
-          <p className="font-body text-sm text-[#5C677D] mt-3 md:mt-0 max-w-md">
-            {t('Распоред 15 аутора према години рођења (1767–1948). Пређите курсором преко године за детаље.')}
-          </p>
+          <div className="mt-4 md:mt-0 flex items-center space-x-4">
+            <span className="font-sans text-sm text-[#5C677D] hidden sm:inline">
+              {t('Помичите хоризонтално:')}
+            </span>
+            <button
+              type="button"
+              onClick={() => scroll('left')}
+              className="w-10 h-10 border border-[#14213D]/25 flex items-center justify-center font-mono text-base text-[#14213D] hover:border-[#B3202A] hover:text-[#B3202A] transition-colors"
+              aria-label="Помичи лијево"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() => scroll('right')}
+              className="w-10 h-10 border border-[#14213D]/25 flex items-center justify-center font-mono text-base text-[#14213D] hover:border-[#B3202A] hover:text-[#B3202A] transition-colors"
+              aria-label="Помичи десно"
+            >
+              →
+            </button>
+          </div>
         </div>
 
-        {/* Timeline visualization bar */}
-        <div className="relative pt-6 pb-4 overflow-x-auto no-scrollbar">
-          {/* Base hairline rule */}
-          <div className="absolute top-10 left-0 right-0 h-[1px] bg-[#14213D]/25" />
+        {/* Real Timeline Scroll with Hairline and Round Portrait Nodes (Rule 5 Requirement) */}
+        <div
+          ref={scrollContainerRef}
+          className="relative overflow-x-auto no-scrollbar pt-10 pb-12 cursor-grab active:cursor-grabbing"
+        >
+          {/* Central Horizontal Hairline Rule */}
+          <div className="absolute top-[88px] left-0 right-0 h-[1px] bg-[#14213D]/20 z-0" />
 
-          <div className="flex items-start justify-between min-w-[760px] relative">
-            {sortedWriters.map((w, idx) => {
+          <div className="flex items-start space-x-12 min-w-max px-4 relative z-10">
+            {sortedWriters.map((w) => {
               const isHovered = activeSlug === w.slug;
               const isDimmed = activeSlug !== null && !isHovered;
 
@@ -48,84 +79,70 @@ export default function TimelineStrip({ writers }: TimelineStripProps) {
                   key={w.slug}
                   onMouseEnter={() => setActiveSlug(w.slug)}
                   onMouseLeave={() => setActiveSlug(null)}
-                  className={`relative flex flex-col items-center group cursor-pointer transition-opacity duration-200 px-2 ${
-                    isDimmed ? 'opacity-30' : 'opacity-100'
+                  className={`flex flex-col items-center group transition-all duration-300 ${
+                    isDimmed ? 'opacity-25 scale-95' : 'opacity-100'
                   }`}
                 >
-                  {/* Mark circle on hairline */}
-                  <div
-                    className={`w-3.5 h-3.5 border transition-all duration-200 z-10 ${
-                      isHovered
-                        ? 'border-[#B3202A] bg-[#B3202A] scale-125'
-                        : 'border-[#14213D] bg-[#FBFAF7] group-hover:border-[#B3202A]'
-                    }`}
-                  />
-
-                  {/* Year marker */}
+                  {/* Large Numerals Above Rule (Minimum 18px text) */}
                   <span
-                    className={`font-sans text-xs mt-3 tabular-nums transition-colors duration-200 ${
-                      isHovered ? 'text-[#B3202A] font-bold' : 'text-[#14213D] font-medium'
+                    className={`font-sans text-xl sm:text-2xl font-bold tabular-nums mb-3 transition-colors duration-200 ${
+                      isHovered ? 'text-[#B3202A]' : 'text-[#14213D]'
                     }`}
                   >
                     {w.birthYear}
                   </span>
 
-                  {/* Writer short name */}
+                  {/* Round Portrait Thumbnail Node (Diameter 64px, hairline border) */}
                   <Link
                     href={`/pisci/${w.slug}`}
-                    className="mt-2 text-center focus-visible:outline-none"
+                    className={`relative w-16 h-16 rounded-full border-2 overflow-hidden bg-[#FBFAF7] flex-shrink-0 transition-transform duration-200 ${
+                      isHovered
+                        ? 'border-[#B3202A] scale-110 shadow-none'
+                        : 'border-[#14213D]/40 group-hover:border-[#B3202A]'
+                    }`}
+                  >
+                    <Image
+                      src={w.image}
+                      alt={w.name}
+                      fill
+                      className="object-cover p-1"
+                    />
+                  </Link>
+
+                  {/* Writer Name Below Rule (Minimum 15px text) */}
+                  <Link
+                    href={`/pisci/${w.slug}`}
+                    className="mt-4 text-center max-w-[120px] focus-visible:outline-none"
                   >
                     <span
-                      className={`font-serif text-xs block max-w-[85px] leading-tight transition-colors ${
-                        isHovered ? 'text-[#B3202A] underline' : 'text-[#14213D]'
+                      className={`font-serif text-base sm:text-lg font-bold block leading-snug transition-colors ${
+                        isHovered ? 'text-[#B3202A]' : 'text-[#14213D]'
                       }`}
                     >
                       {t(w.name)}
                     </span>
-                    <span className="font-sans text-[10px] text-[#5C677D] block mt-0.5 tabular-nums">
+                    <span className="font-sans text-xs text-[#B3202A] block mt-1 tabular-nums font-semibold">
                       {w.birthYear}–{w.deathYear}
                     </span>
+                    <span className="font-sans text-xs text-[#5C677D] block mt-0.5 leading-tight">
+                      {t(w.birthPlace)}
+                    </span>
                   </Link>
-
-                  {/* Expanded Hover Tooltip Card (asymmetric, informative, strictly factual) */}
-                  {isHovered && (
-                    <div className="absolute top-24 z-30 w-64 p-4 border border-[#14213D]/25 bg-[#FBFAF7] text-left pointer-events-none animate-fadeIn">
-                      <div className="font-sans text-[10px] uppercase tracking-wider text-[#B3202A] mb-1">
-                        {t(w.period)}
-                      </div>
-                      <div className="font-serif text-base font-semibold text-[#14213D]">
-                        {t(w.name)}
-                      </div>
-                      <div className="font-sans text-xs text-[#5C677D] mt-1 tabular-nums">
-                        {t('Рођен:')} {w.birthYear}, {t(w.birthPlace)}
-                      </div>
-                      <div className="font-sans text-xs text-[#5C677D] tabular-nums">
-                        {t('Преминуо:')} {w.deathYear}
-                      </div>
-                      <div className="font-body text-xs text-[#14213D] mt-2 pt-2 border-t border-[#14213D]/10">
-                        {w.works[0] ? (
-                          <>
-                            {t('Дјело:')} „{t(w.works[0].title)}“ ({w.works[0].year})
-                          </>
-                        ) : null}
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Selected writer summary highlight */}
+        {/* Highlighted Author Line at Bottom of Timeline */}
         {activeSlug && (
-          <div className="mt-8 text-center sm:text-left">
+          <div className="pt-6 border-t border-[#14213D]/10 text-center sm:text-left transition-all">
             {(() => {
               const active = sortedWriters.find((w) => w.slug === activeSlug);
               if (!active) return null;
               return (
-                <p className="font-serif text-sm text-[#14213D] italic">
-                  → {t(active.name)} ({active.birthYear}–{active.deathYear}), {t(active.birthPlace)}. {t('Канонски аутор периода')}: {t(active.period)}.
+                <p className="font-serif text-base sm:text-lg text-[#14213D]">
+                  → <strong className="text-[#B3202A]">{t(active.name)}</strong> ({active.birthYear}–{active.deathYear}), {t(active.birthPlace)}. {t('Период:')} {t(active.period)}.
                 </p>
               );
             })()}

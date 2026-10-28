@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useScript } from '@/context/ScriptContext';
 
@@ -14,15 +13,15 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
   const { t } = useScript();
 
   return (
-    <footer className="border-t border-[#14213D]/20 bg-[#FBFAF7] pt-14 pb-12 mt-24">
+    <footer className="border-t border-[#14213D]/20 bg-[#FBFAF7] pt-16 pb-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Ministry Funding Notice Strip */}
-        <div className="p-6 sm:p-8 border border-[#14213D]/20 bg-[#F4F1EA] mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="max-w-2xl text-center md:text-left">
-            <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-[#B3202A] block mb-1">
-              {t('Институционална подршка')}
+        {/* Ministry Funding Notice Strip (Shown ONCE at bottom per rule) */}
+        <div className="border-t border-b border-[#14213D]/15 py-8 mb-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] block mb-1 font-semibold">
+              {t('Институционални покровитељ')}
             </span>
-            <p className="font-serif text-base sm:text-lg text-[#14213D] leading-snug">
+            <p className="font-serif text-xl sm:text-2xl text-[#14213D] leading-snug font-bold">
               {t('Пројекат је реализован уз подршку и финансирање Министарства културе Републике Србије.')}
             </p>
           </div>
@@ -30,26 +29,26 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
             {/* Labeled empty placeholder box per rule */}
             <div className="border border-dashed border-[#14213D]/40 bg-[#FBFAF7] px-6 py-4 text-center">
               <span className="font-sans text-[10px] tracking-widest text-[#5C677D] uppercase block">
-                {t('[ МЈЕСТО ЗА ЗВАНИЧНИ ЛОГОТИП ]')}
+                {t('[ РЕЗЕРВИСАНО МЈЕСТО ЗА ЗВАНИЧНИ ЛОГО ]')}
               </span>
-              <span className="font-serif text-xs font-semibold text-[#14213D] tracking-wide block mt-1">
+              <span className="font-serif text-sm font-bold text-[#14213D] tracking-wide block mt-1">
                 {t('Министарство културе Републике Србије')}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Editorial catalogue footer grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#14213D]/15">
+        {/* Editorial catalogue footer grid (No beige boxes!) */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-[#14213D]/15">
           {/* Col 1 */}
           <div className="md:col-span-2">
-            <span className="font-serif text-2xl font-bold tracking-wider text-[#14213D] block mb-2">
+            <span className="font-serif text-3xl font-bold tracking-wider text-[#14213D] block mb-2">
               {t('ЗАПИСИ СРПСКЕ')}
             </span>
-            <p className="font-sans text-xs tracking-widest uppercase text-[#5C677D] mb-4">
+            <p className="font-sans text-xs tracking-[0.2em] uppercase text-[#5C677D] mb-4">
               {t('ДИГИТАЛНА РИЗНИЦА КЊИЖЕВНОГ НАСЉЕЂА РЕПУБЛИКЕ СРПСКЕ')}
             </p>
-            <p className="font-body text-sm text-[#5C677D] leading-relaxed max-w-md">
+            <p className="font-body text-base text-[#5C677D] leading-relaxed max-w-md">
               {t('Систематизовани архив канонских књижевника из Републике Српске и Босне и Херцеговине.')}{' '}
               {t('Архив покрива књижевни континуитет у распону')} <span className="tabular-nums font-semibold text-[#14213D]">{yearRange}</span>.
             </p>
@@ -57,10 +56,10 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
 
           {/* Col 2 */}
           <div>
-            <h3 className="font-sans text-xs tracking-widest uppercase text-[#B3202A] mb-3">
+            <h3 className="font-sans text-xs tracking-widest uppercase text-[#B3202A] mb-4 font-semibold">
               {t('Навигација')}
             </h3>
-            <ul className="space-y-2 font-body text-sm">
+            <ul className="space-y-2.5 font-body text-base">
               <li>
                 <Link href="/" className="text-[#14213D] hover:text-[#B3202A] link-draw">
                   {t('Почетна страна')}
@@ -81,21 +80,21 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
 
           {/* Col 3 */}
           <div>
-            <h3 className="font-sans text-xs tracking-widest uppercase text-[#B3202A] mb-3">
+            <h3 className="font-sans text-xs tracking-widest uppercase text-[#B3202A] mb-4 font-semibold">
               {t('Подаци о архиву')}
             </h3>
-            <div className="font-sans text-xs space-y-1.5 text-[#5C677D]">
+            <div className="font-sans text-xs space-y-2 text-[#5C677D]">
               <p>
-                {t('Евидентираних аутора:')} <span className="tabular-nums font-semibold text-[#14213D]">{totalWriters}</span>
+                {t('Евидентираних аутора:')} <span className="tabular-nums font-bold text-[#14213D] text-sm">{totalWriters}</span>
               </p>
               <p>
-                {t('Временски распон:')} <span className="tabular-nums font-semibold text-[#14213D]">{yearRange}</span>
+                {t('Временски распон:')} <span className="tabular-nums font-bold text-[#14213D] text-sm">{yearRange}</span>
               </p>
               <p>
                 {t('Посљедње ажурирање:')} <span className="tabular-nums font-semibold text-[#14213D]">{t('октобар 2026.')}</span>
               </p>
               <p>
-                {t('Формат грађе:')} <span className="font-semibold text-[#14213D]">{t('Биобиблиографски фонд')}</span>
+                {t('Статус:')} <span className="text-[#14213D] font-medium">{t('Слободан јавни приступ')}</span>
               </p>
             </div>
           </div>

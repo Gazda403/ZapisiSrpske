@@ -27,3 +27,4 @@ export interface Writer {
   sources: string[];
   verified: boolean;
 }
+

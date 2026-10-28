@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Writer, PeriodType } from '@/lib/types';
+import { Writer } from '@/lib/types';
 import { useScript } from '@/context/ScriptContext';
 
 interface WritersCatalogueProps {
@@ -25,12 +25,9 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
 
   const filteredWriters = useMemo(() => {
     return writers.filter((w) => {
-      // Period filter
       if (selectedPeriod !== 'all' && w.period !== selectedPeriod) {
         return false;
       }
-
-      // Search filter (name, birthplace, works)
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase().trim();
         const nameCyr = w.name.toLowerCase();
@@ -44,29 +41,28 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
           placeLat.includes(q)
         );
       }
-
       return true;
     });
   }, [writers, selectedPeriod, searchQuery, t]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Page Header */}
-      <div className="border-b border-[#14213D]/15 pb-8 mb-10">
-        <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] block mb-2 font-semibold">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 bg-[#FBFAF7]">
+      {/* Page Header (No box!) */}
+      <div className="border-b border-[#14213D]/15 pb-10 mb-12">
+        <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-3 font-semibold">
           {t('Каталог аутора')} • № 02
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-[#14213D]">
+        <h1 className="font-serif text-5xl sm:text-7xl font-bold text-[#14213D] leading-tight">
           {t('Писци и књижевници')}
         </h1>
-        <p className="font-body text-base text-[#5C677D] mt-3 max-w-2xl">
-          {t('Биобиблиографски фонд обухвата 15 канонских књижевника из Републике Српске и Босне и Херцеговине.')}
+        <p className="font-body text-lg text-[#5C677D] mt-4 max-w-2xl leading-relaxed">
+          {t('Комплетан биобиблиографски фонд обухвата 15 канонских стваралаца из три историјске епохе.')}
         </p>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 pb-8 border-b border-[#14213D]/15 mb-8">
-        {/* Period Filter Buttons */}
+      {/* Filter and Search Bar (Clean hairline controls, no beige container) */}
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 pb-8 border-b border-[#14213D]/15 mb-12">
+        {/* Period Filter Tabs */}
         <div className="flex flex-wrap gap-2">
           {periods.map((p) => {
             const count =
@@ -80,22 +76,22 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
                 key={p.id}
                 type="button"
                 onClick={() => setSelectedPeriod(p.id)}
-                className={`px-3.5 py-2 font-sans text-xs uppercase tracking-wider transition-all border ${
+                className={`px-4 py-2.5 font-sans text-xs uppercase tracking-wider transition-all border ${
                   isSelected
                     ? 'bg-[#14213D] text-[#FBFAF7] border-[#14213D] font-semibold'
-                    : 'bg-[#FBFAF7] text-[#14213D] border-[#14213D]/20 hover:border-[#B3202A] hover:text-[#B3202A]'
+                    : 'bg-[#FBFAF7] text-[#14213D] border-[#14213D]/25 hover:border-[#B3202A] hover:text-[#B3202A]'
                 }`}
                 aria-pressed={isSelected}
               >
                 <span>{t(p.label)}</span>
-                <span className="ml-2 tabular-nums text-[11px] opacity-80">({count})</span>
+                <span className="ml-2 tabular-nums text-xs opacity-80">({count})</span>
               </button>
             );
           })}
         </div>
 
-        {/* Search input */}
-        <div className="relative w-full lg:w-80">
+        {/* Search Input with Hairline Border */}
+        <div className="relative w-full lg:w-88">
           <label htmlFor="writer-search" className="sr-only">
             {t('Претражи писце по имену или мјесту')}
           </label>
@@ -105,13 +101,13 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('Претрага по имену или мјесту...')}
-            className="w-full bg-[#FBFAF7] border border-[#14213D]/25 px-4 py-2 text-sm font-body text-[#14213D] placeholder-[#5C677D]/70 focus:outline-none focus:border-[#B3202A]"
+            className="w-full bg-[#FBFAF7] border border-[#14213D]/25 px-4 py-3 text-base font-body text-[#14213D] placeholder-[#5C677D]/70 focus:outline-none focus:border-[#B3202A]"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-[#5C677D] hover:text-[#B3202A]"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-mono text-[#5C677D] hover:text-[#B3202A]"
               aria-label="Очисти претрагу"
             >
               ✕
@@ -120,13 +116,13 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
         </div>
       </div>
 
-      {/* Main List Layout with Cursor/Beside Portrait Preview Micro-interaction (Rule 10 & 11) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      {/* Main List Layout with Beside Portrait Preview (Whitespace & Hairlines) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Writers List (8 columns) */}
         <div className="lg:col-span-8">
           {filteredWriters.length === 0 ? (
-            <div className="p-8 border border-dashed border-[#14213D]/25 text-center">
-              <p className="font-serif text-lg text-[#14213D]">
+            <div className="py-16 text-center border-t border-b border-[#14213D]/15">
+              <p className="font-serif text-2xl text-[#14213D]">
                 {t('Нема пронађених књижевника за задати критеријум.')}
               </p>
               <button
@@ -135,7 +131,7 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
                   setSelectedPeriod('all');
                   setSearchQuery('');
                 }}
-                className="mt-4 font-sans text-xs uppercase tracking-wider text-[#B3202A] underline"
+                className="mt-4 font-sans text-xs uppercase tracking-widest text-[#B3202A] underline font-semibold"
               >
                 {t('Ресетуј филтере')}
               </button>
@@ -151,40 +147,39 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
                     href={`/pisci/${writer.slug}`}
                     onMouseEnter={() => setHoveredWriter(writer)}
                     onMouseLeave={() => setHoveredWriter(null)}
-                    className={`block py-5 px-3 transition-all duration-200 group focus-visible:outline-none ${
-                      isHovered ? 'bg-[#F4F1EA] translate-x-2' : 'hover:bg-[#F4F1EA]/50'
+                    className={`block py-6 px-3 transition-all duration-200 group focus-visible:outline-none ${
+                      isHovered ? 'translate-x-3 bg-[#F4F1EA]/60' : 'hover:bg-[#F4F1EA]/30'
                     }`}
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                      <div className="flex items-baseline space-x-4">
-                        {/* Number mark */}
-                        <span className="font-mono text-xs text-[#5C677D] w-6 flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
+                      <div className="flex items-baseline space-x-5">
+                        <span className="font-mono text-sm text-[#5C677D] w-7 flex-shrink-0">
                           {String(index + 1).padStart(2, '0')}.
                         </span>
 
                         <div>
-                          <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#14213D] group-hover:text-[#B3202A] transition-colors">
+                          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#14213D] group-hover:text-[#B3202A] transition-colors">
                             {t(writer.name)}
                           </h2>
-                          <p className="font-sans text-xs text-[#5C677D] mt-0.5">
+                          <p className="font-sans text-xs text-[#5C677D] mt-1">
                             {t(writer.birthPlace)}
                           </p>
                         </div>
                       </div>
 
-                      {/* Birth–death years turning red on hover (Rule 10 requirement) */}
-                      <div className="flex items-center space-x-4 sm:text-right pl-10 sm:pl-0">
-                        <span className="font-sans text-[11px] uppercase tracking-wider text-[#5C677D] hidden md:inline">
+                      {/* Birth–death years turning red on hover */}
+                      <div className="flex items-center space-x-6 sm:text-right pl-12 sm:pl-0">
+                        <span className="font-sans text-xs uppercase tracking-wider text-[#5C677D] hidden md:inline">
                           {t(writer.period)}
                         </span>
                         <span
-                          className={`font-sans text-sm tabular-nums font-semibold transition-colors duration-200 ${
+                          className={`font-sans text-base sm:text-lg tabular-nums font-bold transition-colors duration-200 ${
                             isHovered ? 'text-[#B3202A]' : 'text-[#14213D]'
                           }`}
                         >
                           {writer.birthYear}–{writer.deathYear}
                         </span>
-                        <span className="text-[#14213D] group-hover:text-[#B3202A] transition-colors font-mono">
+                        <span className="text-lg text-[#14213D] group-hover:text-[#B3202A] transition-colors font-mono">
                           →
                         </span>
                       </div>
@@ -196,12 +191,12 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
           )}
         </div>
 
-        {/* Right Sticky Portrait Preview Frame (Micro-interaction beside list) (4 columns) */}
+        {/* Right Sticky Portrait Preview (Box allowed here because it holds portrait) */}
         <div className="hidden lg:block lg:col-span-4 sticky top-28">
-          <div className="border border-[#14213D]/25 bg-[#F4F1EA] p-6">
+          <div className="border border-[#14213D]/25 p-6 bg-[#FBFAF7]">
             <div className="border-b border-[#14213D]/15 pb-2 mb-4 flex justify-between items-center">
-              <span className="font-sans text-[10px] uppercase tracking-widest text-[#B3202A] font-semibold">
-                {t('Преглед портрета')}
+              <span className="font-sans text-xs uppercase tracking-widest text-[#B3202A] font-semibold">
+                {t('Портретни фонд')}
               </span>
               <span className="font-mono text-xs text-[#5C677D]">
                 {hoveredWriter ? hoveredWriter.birthYear : '1767–2022'}
@@ -210,37 +205,38 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
 
             {hoveredWriter ? (
               <div className="animate-fadeIn">
-                <div className="relative aspect-[3/4] border border-[#14213D]/20 bg-[#FBFAF7] overflow-hidden mb-4">
+                <div className="relative aspect-[3/4] border border-[#14213D]/25 overflow-hidden mb-5 duotone-box">
                   <Image
                     src={hoveredWriter.image}
                     alt={hoveredWriter.name}
                     fill
-                    className="object-contain p-2"
+                    className="object-contain p-3 duotone-img"
                   />
+                  <div className="duotone-layer" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#14213D]">
+                <h3 className="font-serif text-3xl font-bold text-[#14213D]">
                   {t(hoveredWriter.name)}
                 </h3>
-                <p className="font-sans text-xs text-[#B3202A] font-semibold tabular-nums mt-0.5">
+                <p className="font-sans text-base text-[#B3202A] font-bold tabular-nums mt-1">
                   {hoveredWriter.birthYear}–{hoveredWriter.deathYear}
                 </p>
                 <p className="font-sans text-xs text-[#5C677D] mt-1">
                   {t('Родно мјесто:')} {t(hoveredWriter.birthPlace)}
                 </p>
-                <p className="font-body text-xs text-[#14213D] mt-3 line-clamp-3 leading-relaxed">
+                <p className="font-body text-sm text-[#14213D] mt-3 line-clamp-3 leading-relaxed">
                   {t(hoveredWriter.bio)}
                 </p>
                 {hoveredWriter.works[0] && (
-                  <p className="font-sans text-xs text-[#5C677D] mt-2 pt-2 border-t border-[#14213D]/10">
+                  <p className="font-sans text-xs text-[#5C677D] mt-3 pt-3 border-t border-[#14213D]/10">
                     {t('Дјело:')} „{t(hoveredWriter.works[0].title)}“ ({hoveredWriter.works[0].year})
                   </p>
                 )}
               </div>
             ) : (
-              <div className="aspect-[3/4] border border-dashed border-[#14213D]/20 bg-[#FBFAF7] flex flex-col items-center justify-center p-6 text-center">
-                <span className="font-serif text-3xl text-[#14213D]/40 mb-2">§</span>
-                <p className="font-serif text-sm text-[#5C677D]">
-                  {t('Пређите курсором преко писца у листи са лијеве стране за приказ портрета и детаља.')}
+              <div className="aspect-[3/4] border border-dashed border-[#14213D]/20 flex flex-col items-center justify-center p-6 text-center">
+                <span className="font-serif text-4xl text-[#14213D]/30 mb-3">§</span>
+                <p className="font-serif text-base text-[#5C677D]">
+                  {t('Пређите курсором преко писца у листи за приказ портрета и детаља.')}
                 </p>
               </div>
             )}

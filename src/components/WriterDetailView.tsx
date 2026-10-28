@@ -31,7 +31,6 @@ export default function WriterDetailView({
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Slow translate/mask reveal on portrait and content
       if (portraitRef.current) {
         gsap.from(portraitRef.current, {
           opacity: 0,
@@ -53,7 +52,6 @@ export default function WriterDetailView({
     return () => ctx.revert();
   }, [writer.slug]);
 
-  // Schema.org Person JSON-LD
   const personJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -69,14 +67,14 @@ export default function WriterDetailView({
   };
 
   return (
-    <div ref={pageRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div ref={pageRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 bg-[#FBFAF7]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
 
       {/* Top Breadcrumb & Metadata strip */}
-      <div className="flex flex-wrap items-center justify-between border-b border-[#14213D]/15 pb-4 mb-10 text-xs font-sans text-[#5C677D] gap-3">
+      <div className="flex flex-wrap items-center justify-between border-b border-[#14213D]/15 pb-6 mb-16 text-xs font-sans text-[#5C677D] gap-4">
         <div className="flex items-center space-x-2">
           <Link href="/pisci" className="hover:text-[#B3202A] link-draw">
             {t('Писци')}
@@ -96,29 +94,29 @@ export default function WriterDetailView({
         </div>
       </div>
 
-      {/* Asymmetric Editorial Grid (5/7 Columns) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        {/* Left Column (5 columns): Portrait, Metadata Card, Credit Line */}
+      {/* Asymmetric Editorial Grid (5/7 Columns) - No Beige Boxes! */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* Left Column (5 columns): Portrait (Card allowed here because it holds portrait) */}
         <div className="lg:col-span-5">
-          {/* Portrait in refined hairline frame */}
           <div
             ref={portraitRef}
-            className="border border-[#14213D]/25 bg-[#F4F1EA] p-4 sm:p-6 relative group"
+            className="border border-[#14213D]/25 p-4 sm:p-6 relative group duotone-box bg-[#FBFAF7]"
           >
-            <div className="relative aspect-[3/4] border border-[#14213D]/20 bg-[#FBFAF7] overflow-hidden mb-4">
+            <div className="relative aspect-[3/4] border border-[#14213D]/20 overflow-hidden mb-4">
               <Image
                 src={writer.image}
                 alt={`Портрет: ${writer.name}`}
                 fill
                 priority
-                className="object-contain p-2"
+                className="object-contain p-2 duotone-img"
               />
+              <div className="duotone-layer" />
             </div>
 
-            {/* Credit Line & License (Rule 7 Requirement) */}
-            <div className="border-t border-[#14213D]/15 pt-3 space-y-1 text-xs font-sans text-[#5C677D]">
+            {/* Credit Line & License */}
+            <div className="border-t border-[#14213D]/15 pt-3 space-y-1.5 text-xs font-sans text-[#5C677D]">
               <div className="flex justify-between">
-                <span>{t('Извор портрета:')}</span>
+                <span>{t('Извор:')}</span>
                 <span className="text-[#14213D] text-right max-w-[240px]">
                   {t(writer.imageCredit)}
                 </span>
@@ -132,11 +130,11 @@ export default function WriterDetailView({
             </div>
           </div>
 
-          {/* Quick Fact Sheet Box */}
-          <div className="border border-[#14213D]/15 bg-[#FBFAF7] p-6 mt-6 space-y-4">
-            <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] font-semibold">
-              {t('Основни подаци о аутору')}
-            </h3>
+          {/* Quick Fact Sheet (Clean hairline rules, NO beige card) */}
+          <div className="border-t border-b border-[#14213D]/15 py-6 mt-8 space-y-4">
+            <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] font-semibold block">
+              {t('Основни подаци')}
+            </span>
 
             <div className="space-y-3 font-sans text-xs">
               <div className="flex justify-between pb-2 border-b border-[#14213D]/10">
@@ -154,7 +152,7 @@ export default function WriterDetailView({
               </div>
 
               <div className="flex justify-between pb-2 border-b border-[#14213D]/10">
-                <span className="text-[#5C677D]">{t('Књижевна епоха:')}</span>
+                <span className="text-[#5C677D]">{t('Епоха:')}</span>
                 <span className="text-[#14213D] font-semibold text-right">
                   {t(writer.period)}
                 </span>
@@ -171,44 +169,44 @@ export default function WriterDetailView({
         </div>
 
         {/* Right Column (7 columns): Name, Bio, Works, Quotes, Sources */}
-        <div className="lg:col-span-7 space-y-10">
-          {/* Header Block */}
+        <div className="lg:col-span-7 space-y-12">
+          {/* Header Block with Giant Typography */}
           <div className="reveal-item border-b border-[#14213D]/15 pb-8">
-            <div className="flex items-center space-x-3 mb-2">
-              <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] font-semibold">
+            <div className="flex items-center space-x-3 mb-3">
+              <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] font-semibold">
                 {t(writer.period)}
               </span>
               <span>•</span>
-              <span className="font-sans text-xs text-[#5C677D] tabular-nums">
+              <span className="font-sans text-sm text-[#5C677D] tabular-nums font-semibold">
                 {writer.birthYear}–{writer.deathYear}
               </span>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#14213D] leading-tight mb-4">
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-[#14213D] leading-tight mb-4">
               {t(writer.name)}
             </h1>
 
-            <p className="font-sans text-sm text-[#5C677D] tracking-wide">
-              {t('Завичајно поријекло:')} <span className="text-[#14213D] font-medium">{t(writer.birthPlace)}</span>
+            <p className="font-sans text-base text-[#5C677D] tracking-wide">
+              {t('Завичајно поријекло:')} <strong className="text-[#14213D]">{t(writer.birthPlace)}</strong>
             </p>
           </div>
 
-          {/* Biography (3-5 verified sentences) */}
+          {/* Biography (Minimum 18px text, leading 1.6) */}
           <div className="reveal-item">
-            <h2 className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] mb-4 font-semibold">
+            <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] mb-3 block font-semibold">
               § {t('Биографски преглед')}
-            </h2>
-            <p className="font-body text-lg text-[#14213D] leading-relaxed">
+            </span>
+            <p className="font-body text-xl text-[#14213D] leading-relaxed">
               {t(writer.bio)}
             </p>
           </div>
 
-          {/* Pull-quote block (Layout looks good with or without quote) */}
+          {/* Quote Block (Card allowed only where it holds a quote) */}
           {writer.quotes && writer.quotes.length > 0 ? (
-            <div className="reveal-item border-l-2 border-[#B3202A] pl-6 py-3 my-8 bg-[#F4F1EA]/60">
+            <div className="reveal-item border-l-2 border-[#B3202A] pl-8 py-4 my-8">
               {writer.quotes.map((q, idx) => (
-                <div key={idx} className="space-y-2">
-                  <blockquote className="font-serif text-xl sm:text-2xl text-[#14213D] italic leading-snug">
+                <div key={idx} className="space-y-3">
+                  <blockquote className="font-serif text-2xl sm:text-3xl text-[#14213D] italic leading-snug">
                     „{t(q.text)}“
                   </blockquote>
                   <cite className="font-sans text-xs text-[#5C677D] block not-italic tabular-nums">
@@ -218,33 +216,33 @@ export default function WriterDetailView({
               ))}
             </div>
           ) : (
-            <div className="reveal-item border border-dashed border-[#14213D]/20 p-4 bg-[#FBFAF7] text-xs font-sans text-[#5C677D]">
-              <span className="text-[#B3202A] font-semibold mr-2">[ Цитатни фонд ]</span>
-              {t('Унос аутентичних цитата из дјела за овог аутора је у припреми и биће накнадно верификован.')}
+            <div className="reveal-item border border-dashed border-[#14213D]/25 p-6 bg-[#FBFAF7] text-xs font-sans text-[#5C677D]">
+              <span className="text-[#B3202A] font-semibold mr-2">[ {t('Цитатни фонд')} ]</span>
+              {t('Унос аутентичних цитата за овог аутора је у припреми и биће објављен након завршетка верификације.')}
             </div>
           )}
 
-          {/* List of Works with Publication Years */}
+          {/* List of Works with Publication Years (Hairline divider, no box) */}
           <div className="reveal-item">
-            <h2 className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] mb-4 font-semibold">
-              § {t('Изабрана књижевна библиографија')}
-            </h2>
+            <span className="font-sans text-xs uppercase tracking-[0.2em] text-[#B3202A] mb-4 block font-semibold">
+              § {t('Изабрана библиографија')}
+            </span>
 
-            <div className="border border-[#14213D]/20 bg-[#FBFAF7] divide-y divide-[#14213D]/10">
+            <div className="border-t border-b border-[#14213D]/15 divide-y divide-[#14213D]/10">
               {writer.works.map((work, idx) => (
                 <div
                   key={work.title}
-                  className="p-4 flex items-baseline justify-between hover:bg-[#F4F1EA] transition-colors"
+                  className="py-4 flex items-baseline justify-between hover:translate-x-2 transition-transform duration-200"
                 >
-                  <div className="flex items-baseline space-x-3">
-                    <span className="font-mono text-xs text-[#5C677D]">
+                  <div className="flex items-baseline space-x-4">
+                    <span className="font-mono text-sm text-[#5C677D]">
                       {String(idx + 1).padStart(2, '0')}.
                     </span>
-                    <span className="font-serif text-base sm:text-lg font-semibold text-[#14213D]">
+                    <span className="font-serif text-xl font-bold text-[#14213D]">
                       „{t(work.title)}“
                     </span>
                   </div>
-                  <span className="font-sans text-xs text-[#5C677D] tabular-nums font-medium">
+                  <span className="font-sans text-sm text-[#B3202A] tabular-nums font-semibold">
                     {work.year ? `${work.year}.` : t('Недатирано')}
                   </span>
                 </div>
@@ -252,12 +250,12 @@ export default function WriterDetailView({
             </div>
           </div>
 
-          {/* Sources Section (Rule Requirement) */}
-          <div className="reveal-item pt-4 border-t border-[#14213D]/15">
+          {/* Sources Section */}
+          <div className="reveal-item pt-6 border-t border-[#14213D]/15">
             <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-[#5C677D] mb-3">
               {t('Извори и стручна литература')}
             </h3>
-            <ul className="space-y-1.5 font-body text-xs text-[#5C677D] list-disc list-inside">
+            <ul className="space-y-2 font-body text-sm text-[#5C677D] list-disc list-inside">
               {writer.sources.map((src, i) => (
                 <li key={i}>{t(src)}</li>
               ))}
@@ -266,24 +264,23 @@ export default function WriterDetailView({
         </div>
       </div>
 
-      {/* Previous / Next Writer Navigation with Large Hover Preview (Rule 10 Requirement) */}
-      <div className="mt-20 pt-10 border-t border-[#14213D]/20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Previous Writer Link */}
+      {/* Previous / Next Writer Navigation (Large Type Hover Preview) */}
+      <div className="mt-28 pt-12 border-t border-[#14213D]/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {prevWriter ? (
             <Link
               href={`/pisci/${prevWriter.slug}`}
               onMouseEnter={() => setHoveredNav(prevWriter.slug)}
               onMouseLeave={() => setHoveredNav(null)}
-              className="group border border-[#14213D]/20 p-6 bg-[#FBFAF7] hover:bg-[#F4F1EA] hover:border-[#B3202A] transition-all duration-200 focus-visible:outline-none"
+              className="group border border-[#14213D]/20 p-8 hover:border-[#B3202A] transition-all duration-200 focus-visible:outline-none bg-[#FBFAF7]"
             >
-              <span className="font-sans text-[11px] uppercase tracking-widest text-[#5C677D] block mb-2">
+              <span className="font-sans text-xs uppercase tracking-widest text-[#5C677D] block mb-2">
                 ← {t('Претходни аутор')}
               </span>
-              <span className="font-serif text-2xl sm:text-3xl font-bold text-[#14213D] group-hover:text-[#B3202A] transition-colors block">
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#14213D] group-hover:text-[#B3202A] transition-colors block">
                 {t(prevWriter.name)}
               </span>
-              <span className="font-sans text-xs text-[#5C677D] block mt-1 tabular-nums">
+              <span className="font-sans text-sm text-[#5C677D] block mt-1 tabular-nums">
                 {prevWriter.birthYear}–{prevWriter.deathYear} • {t(prevWriter.birthPlace)}
               </span>
             </Link>
@@ -291,21 +288,20 @@ export default function WriterDetailView({
             <div />
           )}
 
-          {/* Next Writer Link */}
           {nextWriter ? (
             <Link
               href={`/pisci/${nextWriter.slug}`}
               onMouseEnter={() => setHoveredNav(nextWriter.slug)}
               onMouseLeave={() => setHoveredNav(null)}
-              className="group border border-[#14213D]/20 p-6 bg-[#FBFAF7] hover:bg-[#F4F1EA] hover:border-[#B3202A] transition-all duration-200 text-left md:text-right focus-visible:outline-none"
+              className="group border border-[#14213D]/20 p-8 hover:border-[#B3202A] transition-all duration-200 text-left md:text-right focus-visible:outline-none bg-[#FBFAF7]"
             >
-              <span className="font-sans text-[11px] uppercase tracking-widest text-[#5C677D] block mb-2">
+              <span className="font-sans text-xs uppercase tracking-widest text-[#5C677D] block mb-2">
                 {t('Сљедећи аутор')} →
               </span>
-              <span className="font-serif text-2xl sm:text-3xl font-bold text-[#14213D] group-hover:text-[#B3202A] transition-colors block">
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#14213D] group-hover:text-[#B3202A] transition-colors block">
                 {t(nextWriter.name)}
               </span>
-              <span className="font-sans text-xs text-[#5C677D] block mt-1 tabular-nums">
+              <span className="font-sans text-sm text-[#5C677D] block mt-1 tabular-nums">
                 {nextWriter.birthYear}–{nextWriter.deathYear} • {t(nextWriter.birthPlace)}
               </span>
             </Link>

@@ -1,9 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 import { getAllWriters, getArchiveStats } from '@/lib/writers';
 import HeroSection from '@/components/HeroSection';
-import FeaturedWritersSection from '@/components/FeaturedWritersSection';
+import WritersEditorialGrid from '@/components/WritersEditorialGrid';
+import DarkQuoteSection from '@/components/DarkQuoteSection';
 import TimelineStrip from '@/components/TimelineStrip';
+import PlacesSection from '@/components/PlacesSection';
 import HomeStatsSection from '@/components/HomeStatsSection';
 
 export default function HomePage() {
@@ -11,17 +12,23 @@ export default function HomePage() {
   const stats = getArchiveStats();
 
   return (
-    <div>
-      {/* Hero Section with First Screen Specifics */}
+    <div className="bg-[#FBFAF7]">
+      {/* 1. Full-bleed Hero (100vh) with rotating headliners & real place photo in navy duotone */}
       <HeroSection yearRange={stats.yearRange} totalWriters={stats.totalWriters} />
 
-      {/* Featured Headline Writers (Kočić, Dučić, Andrić, Ćopić) with Asymmetric Grid */}
-      <FeaturedWritersSection writers={writers} />
+      {/* 2. Big Editorial Writer Grid (60% oversized feature beside smaller tiles) */}
+      <WritersEditorialGrid writers={writers} />
 
-      {/* Interactive Timeline by Birth Year */}
+      {/* 3. Dark Full-Bleed Section for Contrast (White serif quote, red author/year, [quote pending]) */}
+      <DarkQuoteSection />
+
+      {/* 4. Real Timeline (Horizontal scroll, round thumbnail nodes on hairline, large numerals) */}
       <TimelineStrip writers={writers} />
 
-      {/* Concrete Archival Structure & Periods (Numbers computed directly from data) */}
+      {/* 5. Завичаји Section (5 large photos of real places with writers & Wikimedia credits) */}
+      <PlacesSection />
+
+      {/* 6. Period Classification & Archival Context (Hairline rules, no boxes, strictly computed data) */}
       <HomeStatsSection stats={stats} />
     </div>
   );

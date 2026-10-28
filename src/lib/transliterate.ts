@@ -54,3 +54,4 @@ export function transliterateToLatin(text: string): string {
 
   return result;
 }
+

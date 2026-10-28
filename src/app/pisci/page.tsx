@@ -19,3 +19,4 @@ export default function WritersPage() {
 
   return <WritersCatalogue writers={writers} />;
 }
+

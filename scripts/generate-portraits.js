@@ -76,3 +76,4 @@ writers.forEach(w => {
 });
 
 console.log('All 15 portrait SVGs generated successfully.');
+

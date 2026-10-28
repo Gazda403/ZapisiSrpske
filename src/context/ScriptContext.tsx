@@ -59,3 +59,4 @@ export function ScriptProvider({ children }: { children: React.ReactNode }) {
 export function useScript() {
   return useContext(ScriptContext);
 }
+

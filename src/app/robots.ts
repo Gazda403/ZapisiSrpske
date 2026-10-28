@@ -9,3 +9,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: 'https://zapisi-srpske.rs/sitemap.xml',
   };
 }
+
