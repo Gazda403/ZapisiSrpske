@@ -1,10 +1,10 @@
 import React from 'react';
 import { getAllWriters, getArchiveStats } from '@/lib/writers';
-import HeroSection from '@/components/HeroSection';
-import WritersEditorialGrid from '@/components/WritersEditorialGrid';
-import DarkQuoteSection from '@/components/DarkQuoteSection';
-import TimelineStrip from '@/components/TimelineStrip';
-import PlacesSection from '@/components/PlacesSection';
+import HeroCinematic from '@/components/HeroCinematic';
+import HeadlinersScrollStory from '@/components/HeadlinersScrollStory';
+import TypographicIndex from '@/components/TypographicIndex';
+import VerifiedQuoteSection from '@/components/VerifiedQuoteSection';
+import TimelineScrollLinked from '@/components/TimelineScrollLinked';
 import HomeStatsSection from '@/components/HomeStatsSection';
 
 export default function HomePage() {
@@ -12,23 +12,23 @@ export default function HomePage() {
   const stats = getArchiveStats();
 
   return (
-    <div className="bg-[#FBFAF7]">
-      {/* 1. Full-bleed Hero (100vh) with rotating headliners & real place photo in navy duotone */}
-      <HeroSection yearRange={stats.yearRange} totalWriters={stats.totalWriters} />
+    <div className="bg-[#FBFAF7] text-[#14213D] selection:bg-[#B3202A] selection:text-[#FBFAF7]">
+      {/* 1. Cinematic Full-Bleed Hero (100vh, Ken Burns, 12vw title, 25% navy overlay) */}
+      <HeroCinematic yearRange={stats.yearRange} totalWriters={stats.totalWriters} />
 
-      {/* 2. Big Editorial Writer Grid (60% oversized feature beside smaller tiles) */}
-      <WritersEditorialGrid writers={writers} />
+      {/* 2. Scroll Story: 4 Headliners, One Writer = One Full Pinned Screen (50vw photo + 20vw outlined year) */}
+      <HeadlinersScrollStory />
 
-      {/* 3. Dark Full-Bleed Section for Contrast (White serif quote, red author/year, [quote pending]) */}
-      <DarkQuoteSection />
+      {/* 3. The Rest of the Writers: Huge Typographic Index (All 15 names at 5-6rem, cursor-follow preview) */}
+      <TypographicIndex writers={writers} />
 
-      {/* 4. Real Timeline (Horizontal scroll, round thumbnail nodes on hairline, large numerals) */}
-      <TimelineStrip writers={writers} />
+      {/* 4. Quote Section: Only rendered if verified quotes exist; otherwise removed completely */}
+      <VerifiedQuoteSection writers={writers} />
 
-      {/* 5. Завичаји Section (5 large photos of real places with writers & Wikimedia credits) */}
-      <PlacesSection />
+      {/* 5. Scroll-Linked Full-Width Horizontal Timeline (1767 to 1948, 24px+ typography) */}
+      <TimelineScrollLinked writers={writers} />
 
-      {/* 6. Period Classification & Archival Context (Hairline rules, no boxes, strictly computed data) */}
+      {/* 6. Period Classification & Mission (Generous 160px+ vertical padding, hairline rules, zero boxes) */}
       <HomeStatsSection stats={stats} />
     </div>
   );

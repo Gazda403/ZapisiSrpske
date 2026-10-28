@@ -1,46 +1,85 @@
 const { chromium } = require('playwright');
 
-async function screenshot() {
+async function runScreenshots() {
   const browser = await chromium.launch({ headless: true });
 
-  const pages = [
-    { url: 'http://localhost:3000/', label: 'home' },
-    { url: 'http://localhost:3000/pisci', label: 'pisci' },
-    { url: 'http://localhost:3000/pisci/ivo-andric', label: 'andric' },
-    { url: 'http://localhost:3000/o-projektu', label: 'o-projektu' },
-  ];
-
+  // 1. Desktop context (1440x900)
   const desktopCtx = await browser.newContext({
     viewport: { width: 1440, height: 900 },
     deviceScaleFactor: 1.5,
   });
 
-  for (const p of pages) {
-    const page = await desktopCtx.newPage();
-    await page.goto(p.url, { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(2000);
-    const outPath = `C:/Users/Korisnik/Documents/zapisi-${p.label}-desktop.png`;
-    await page.screenshot({ path: outPath, fullPage: true });
-    console.log(`✓ Desktop: ${p.label} → ${outPath}`);
-    await page.close();
+  const page = await desktopCtx.newPage();
+
+  // Home full page
+  await page.goto('http://localhost:3000/', { waitUntil: 'networkidle', timeout: 30000 });
+  await page.waitForTimeout(2000);
+  await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-home-desktop.png', fullPage: true });
+  console.log('✓ Desktop: Home full page');
+
+  // Hero screen viewport crop
+  await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-hero-desktop.png', fullPage: false });
+  console.log('✓ Desktop: Hero viewport');
+
+  // Chapter 1 viewport crop
+  const chapter1 = await page.$('#poglavlja');
+  if (chapter1) {
+    await chapter1.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-chapter1-desktop.png', fullPage: false });
+    console.log('✓ Desktop: Chapter 1 viewport');
   }
+
+  // Writer index crop
+  const indexSec = await page.$('section[aria-label="Индекс канонских аутора"]');
+  if (indexSec) {
+    await indexSec.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-index-desktop.png', fullPage: false });
+    console.log('✓ Desktop: Index viewport');
+  }
+
+  // Timeline crop
+  const timelineSec = await page.$('#vremenska-osa');
+  if (timelineSec) {
+    await timelineSec.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-timeline-desktop.png', fullPage: false });
+    console.log('✓ Desktop: Timeline viewport');
+  }
+
+  // Writer detail page: Ivo Andrić
+  await page.goto('http://localhost:3000/pisci/ivo-andric', { waitUntil: 'networkidle', timeout: 30000 });
+  await page.waitForTimeout(2000);
+  await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-andric-desktop.png', fullPage: true });
+  console.log('✓ Desktop: Andrić page');
+
+  // Catalogue page: /pisci
+  await page.goto('http://localhost:3000/pisci', { waitUntil: 'networkidle', timeout: 30000 });
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-pisci-desktop.png', fullPage: true });
+  console.log('✓ Desktop: Pisci catalogue');
+
+  await page.close();
   await desktopCtx.close();
 
-  // Mobile – home only (full page)
+  // 2. Mobile context (390x844)
   const mobileCtx = await browser.newContext({
     viewport: { width: 390, height: 844 },
     deviceScaleFactor: 2,
   });
+
   const mpage = await mobileCtx.newPage();
   await mpage.goto('http://localhost:3000/', { waitUntil: 'networkidle', timeout: 30000 });
   await mpage.waitForTimeout(2000);
-  const mPath = 'C:/Users/Korisnik/Documents/zapisi-home-mobile.png';
-  await mpage.screenshot({ path: mPath, fullPage: true });
-  console.log(`✓ Mobile: home → ${mPath}`);
+  await mpage.screenshot({ path: 'C:/Users/Korisnik/Documents/zapisi-v3-home-mobile.png', fullPage: true });
+  console.log('✓ Mobile: Home full page');
+
+  await mpage.close();
   await mobileCtx.close();
 
   await browser.close();
-  console.log('\nAll screenshots done.');
+  console.log('All v3 screenshots completed successfully.');
 }
 
-screenshot().catch(e => { console.error(e); process.exit(1); });
+runScreenshots().catch(e => { console.error(e); process.exit(1); });

@@ -54,3 +54,4 @@ async function screenshot() {
 }
 
 screenshot().catch(e => { console.error(e); process.exit(1); });
+

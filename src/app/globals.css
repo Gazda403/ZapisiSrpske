@@ -76,35 +76,40 @@ body {
   text-orientation: mixed;
 }
 
-/* Flat Navy Duotone Treatment for Photos (No Gradients) */
-.duotone-box {
-  position: relative;
-  overflow: hidden;
-  background-color: #14213D;
+/* Ken Burns slow cinematic camera zoom (scale 1 to 1.08 over 20s) */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
 }
 
-.duotone-img {
-  filter: grayscale(100%) contrast(115%) brightness(95%);
-  transition: filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+.kenburns-photo {
+  animation: kenburns 20s ease-out infinite alternate;
+  will-change: transform;
 }
 
-.duotone-layer {
-  position: absolute;
-  inset: 0;
-  background-color: #14213D;
-  mix-blend-mode: multiply;
-  opacity: 0.6;
-  pointer-events: none;
-  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+/* Giant hairline outlined typography */
+.text-outline-navy {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(20, 33, 61, 0.14);
 }
 
-.group:hover .duotone-img {
-  filter: grayscale(0%) contrast(105%) brightness(100%);
-  transform: scale(1.02);
+.text-outline-white {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(251, 250, 247, 0.25);
 }
 
-.group:hover .duotone-layer {
-  opacity: 0.15;
+/* Editorial photo styling: bright, slightly desaturated, natural contrast */
+.editorial-photo {
+  filter: saturate(85%) contrast(104%);
+  transition: filter 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.editorial-photo:hover {
+  filter: saturate(95%) contrast(106%);
 }
 
 /* Anti-AI Slop: strictly NO glow, NO gradients, NO glassmorphism */
@@ -114,13 +119,23 @@ body {
   backdrop-filter: none !important;
 }
 
-/* Hide scrollbar for clean timeline strip */
+/* Hide scrollbar for clean horizontal scrolls */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Page wipe transition indicator */
+.page-wipe {
+  position: fixed;
+  inset: 0;
+  background-color: #14213D;
+  z-index: 100;
+  pointer-events: none;
+  transform: translateY(100%);
 }
 
 /* Accessible reduced motion */
@@ -130,5 +145,9 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .kenburns-photo {
+    animation: none !important;
+    transform: scale(1) !important;
   }
 }
