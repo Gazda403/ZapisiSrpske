@@ -35,12 +35,12 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
               className="flex items-center space-x-3"
             >
               <Image
-                src="/ministry-logo.jpg"
+                src="/ministry-logo.png"
                 alt="Грб Министарства културе Републике Србије"
                 width={48}
                 height={58}
                 className="object-contain flex-shrink-0"
-              />
+                              />
               <span className="font-serif text-sm font-bold text-[#14213D] tracking-wide">
                 {t('Министарство културе Републике Србије')}
               </span>

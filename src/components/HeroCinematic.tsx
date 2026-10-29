@@ -133,14 +133,7 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
         className="relative z-10 w-full border-t border-[#FBFAF7]/20 bg-[#14213D]/60 py-3 px-4 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[11px] sm:text-xs font-sans text-[#FBFAF7]/75 gap-2"
       >
         <div className="flex items-center space-x-2.5">
-          <Image
-            src="/ministry-logo.jpg"
-            alt=""
-            width={14}
-            height={17}
-            className="object-contain flex-shrink-0 opacity-80"
-            aria-hidden="true"
-          />
+          <span className="w-1.5 h-1.5 bg-[#B3202A] flex-shrink-0" />
           <span>
             {t('Пројекат је реализован уз подршку и финансирање Министарства културе Републике Србије.')}
           </span>

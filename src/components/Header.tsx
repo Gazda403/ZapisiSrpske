@@ -69,12 +69,12 @@ export default function Header() {
               className="flex-shrink-0 flex items-center"
             >
               <Image
-                src="/ministry-logo.jpg"
+                src="/ministry-logo.png"
                 alt="Грб Министарства културе Републике Србије"
                 width={28}
                 height={34}
                 className="object-contain"
-              />
+                              />
             </a>
 
             {/* Hairline vertical divider */}
@@ -186,12 +186,12 @@ export default function Header() {
               className="flex-shrink-0 ml-3"
             >
               <Image
-                src="/ministry-logo.jpg"
+                src="/ministry-logo.png"
                 alt="Грб Министарства културе Републике Србије"
                 width={22}
                 height={26}
                 className="object-contain"
-              />
+                              />
             </a>
           </div>
         </div>
