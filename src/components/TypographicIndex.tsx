@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Writer } from '@/lib/types';
 import { useScript } from '@/context/ScriptContext';
+import { getWriterPlacePhoto } from '@/lib/places';
 
 interface TypographicIndexProps {
   writers: Writer[];
@@ -102,37 +103,54 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
         </div>
       </div>
 
-      {/* Floating Cursor-Follow Portrait/Place Preview (Desktop only, no touch) */}
-      {!isTouch && activeWriter && (
-        <div
-          className="fixed pointer-events-none z-50 transition-transform duration-100 ease-out hidden lg:block"
-          style={{
-            left: `${mousePos.x + 32}px`,
-            top: `${mousePos.y - 140}px`,
-            width: '260px',
-          }}
-        >
-          <div className="bg-[#FBFAF7] border border-[#14213D]/25 p-2 shadow-none">
-            <div className="relative aspect-[3/4] w-full bg-[#14213D]/5 overflow-hidden border border-[#14213D]/10">
-              <Image
-                src={activeWriter.image}
-                alt={activeWriter.name}
-                fill
-                sizes="260px"
-                className="object-cover object-top"
-              />
-            </div>
-            <div className="pt-2 px-1 text-center">
-              <p className="font-serif text-sm font-bold text-[#14213D] leading-tight">
-                {t(activeWriter.name)}
-              </p>
-              <p className="font-serif text-xs text-[#B3202A] tabular-nums">
-                {activeWriter.birthYear}–{activeWriter.deathYear}
-              </p>
+      {/* Floating Cursor-Follow Portrait & Place Preview (Desktop only, no touch) */}
+      {!isTouch && activeWriter && (() => {
+        const placePhoto = getWriterPlacePhoto(activeWriter.slug);
+        return (
+          <div
+            className="fixed pointer-events-none z-50 transition-transform duration-100 ease-out hidden lg:block"
+            style={{
+              left: `${mousePos.x + 32}px`,
+              top: `${mousePos.y - 170}px`,
+              width: '280px',
+            }}
+          >
+            <div className="bg-[#FBFAF7] border border-[#14213D]/25 p-3 shadow-none">
+              <div className="grid grid-cols-2 gap-2 mb-2">
+                <div className="relative aspect-[3/4] w-full bg-[#14213D]/5 overflow-hidden border border-[#14213D]/10">
+                  <Image
+                    src={activeWriter.image}
+                    alt={activeWriter.name}
+                    fill
+                    sizes="140px"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="relative aspect-[3/4] w-full bg-[#14213D]/5 overflow-hidden border border-[#14213D]/10">
+                  <Image
+                    src={placePhoto.image}
+                    alt={placePhoto.placeName}
+                    fill
+                    sizes="140px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="pt-2 px-1 text-center border-t border-[#14213D]/10">
+                <p className="font-serif text-sm font-bold text-[#14213D] leading-tight">
+                  {t(activeWriter.name)}
+                </p>
+                <p className="font-serif text-xs text-[#B3202A] tabular-nums mt-0.5">
+                  {activeWriter.birthYear}–{activeWriter.deathYear}
+                </p>
+                <p className="font-sans text-[10px] text-[#5C677D] mt-1 truncate">
+                  {t(placePhoto.placeName)}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </section>
   );
 }

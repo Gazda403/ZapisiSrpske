@@ -90,13 +90,13 @@ export default function WriterDetailView({
             {t(writer.name)}
           </h1>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-3 sm:pt-4 border-t border-[#FBFAF7]/20 text-xs font-sans text-[#FBFAF7]/80">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-3 sm:pt-4 border-t border-[#FBFAF7]/20 text-xs font-sans text-[#FBFAF7]/85">
             <p>
-              {t('Завичајно поријекло:')}{' '}
-              <span className="text-[#FBFAF7] font-medium">{t(writer.birthPlace)}</span>
+              <span className="text-[#FBFAF7]/60">{t('Завичајно окружење:')}</span>{' '}
+              <span className="text-[#FBFAF7] font-medium">{t(placePhoto.placeName)}</span>
             </p>
-            <p className="font-mono text-[11px] text-[#FBFAF7]/60">
-              {t(placePhoto.placeName)} · {placePhoto.license}
+            <p className="font-sans text-[11px] text-[#FBFAF7]/70">
+              {t(placePhoto.credit)} · {placePhoto.license}
             </p>
           </div>
         </div>
