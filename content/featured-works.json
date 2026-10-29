@@ -4,8 +4,8 @@
     "authorSlug": "ivo-andric",
     "year": 1945,
     "note": "Романсијерска хроника вишеградске касабе и моста на Дрини кроз четири вијека.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/na-drini-cuprija.jpg",
+    "coverCredit": "Прво издање, Просвета, Београд (1945)",
     "verified": true
   },
   {
@@ -13,8 +13,8 @@
     "authorSlug": "petar-kocic",
     "year": 1904,
     "note": "Драмска сатира о сукобу Давида Штрпца са аустроугарским судом у Бањој Луци.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/jazavac-pred-sudom.jpg",
+    "coverCredit": "Прво издање, Сремски Карловци (1904)",
     "verified": true
   },
   {
@@ -22,8 +22,8 @@
     "authorSlug": "jovan-ducic",
     "year": 1908,
     "note": "Збирка лирских пјесама у прози настала у Женеви.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/plave-legende.jpg",
+    "coverCredit": "Српска књижевна задруга, Београд (1908)",
     "verified": true
   },
   {
@@ -31,8 +31,8 @@
     "authorSlug": "aleksa-santic",
     "year": 1902,
     "note": "Лирска пјесма први пут објављена у мостарском часопису „Коло“.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/emina.jpg",
+    "coverCredit": "Прво штампање у часопису „Коло“, Београд (1902)",
     "verified": true
   },
   {
@@ -40,8 +40,8 @@
     "authorSlug": "branko-copic",
     "year": 1957,
     "note": "Роман о дјечијој дружини Јованчета у селу Липово под Грмечом 1941. године.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/orlovi-rano-lete.jpg",
+    "coverCredit": "Прво издање, Сарајево (1957)",
     "verified": true
   },
   {
@@ -49,8 +49,8 @@
     "authorSlug": "svetozar-corovic",
     "year": 1907,
     "note": "Социјални роман о животу сеоског младића у мостарској трговачкој чаршији.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/stojan-mutikasa.jpg",
+    "coverCredit": "Прво издање, Мостар / Београд (1907)",
     "verified": true
   },
   {
@@ -58,8 +58,8 @@
     "authorSlug": "momo-kapor",
     "year": 1981,
     "note": "Роман о београдском професору Мишелу Бабићу и студенткињи Уни Војводић.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/una.jpg",
+    "coverCredit": "Прво издање, Знање, Загреб (1981)",
     "verified": true
   },
   {
@@ -67,8 +67,8 @@
     "authorSlug": "filip-visnjic",
     "year": 1815,
     "note": "Епска народна пјесма коју је у манастиру Шишатовац 1815. забиљежио Вук Караџић.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/pocetak-bune-protiv-dahija.jpg",
+    "coverCredit": "Забиљежио Вук Стефановић Караџић (1815)",
     "verified": true
   },
   {
@@ -76,8 +76,8 @@
     "authorSlug": "vaso-pelagic",
     "year": 1879,
     "note": "Приручник народне медицине, здравственог васпитања и пољопривреде.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/narodni-ucitelj.jpg",
+    "coverCredit": "Прво издање, Београд (1879)",
     "verified": true
   },
   {
@@ -85,9 +85,8 @@
     "authorSlug": "branko-copic",
     "year": 1970,
     "note": "Аутобиографска збирка приповједака посвећена Зији Диздаревићу.",
-    "cover": null,
-    "coverCredit": null,
+    "cover": "/images/books/basta-sljezove-boje.jpg",
+    "coverCredit": "Прво издање, Српска књижевна задруга (1970)",
     "verified": true
   }
 ]
-

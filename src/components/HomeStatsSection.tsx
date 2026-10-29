@@ -29,46 +29,31 @@ export default function HomeStatsSection({ stats }: HomeStatsProps) {
             </h3>
 
             <div className="divide-y divide-[#14213D]/15">
-              <div className="py-6 flex items-baseline justify-between">
-                <div>
-                  <h4 className="font-serif text-2xl font-bold text-[#14213D]">
-                    {t('19. вијек')}
-                  </h4>
-                  <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
-                    {t('Вишњић, Пелагић, Шантић, Ћоровић')}
-                  </p>
-                </div>
-                <span className="font-serif text-2xl font-bold text-[#B3202A] tabular-nums">
-                  {stats.periodCounts['19. вијек']} {t('аутора')}
-                </span>
+              <div className="py-6">
+                <h4 className="font-serif text-2xl font-bold text-[#14213D]">
+                  {t('19. вијек')}
+                </h4>
+                <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
+                  {t('Вишњић, Пелагић, Шантић, Ћоровић')}
+                </p>
               </div>
 
-              <div className="py-6 flex items-baseline justify-between">
-                <div>
-                  <h4 className="font-serif text-2xl font-bold text-[#14213D]">
-                    {t('Прва половина 20. вијека')}
-                  </h4>
-                  <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
-                    {t('Кочић, Дучић, Андрић, Митриновић, Гаћиновић')}
-                  </p>
-                </div>
-                <span className="font-serif text-2xl font-bold text-[#B3202A] tabular-nums">
-                  {stats.periodCounts['прва половина 20. вијека']} {t('аутора')}
-                </span>
+              <div className="py-6">
+                <h4 className="font-serif text-2xl font-bold text-[#14213D]">
+                  {t('Прва половина 20. вијека')}
+                </h4>
+                <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
+                  {t('Кочић, Дучић, Андрић, Митриновић, Гаћиновић')}
+                </p>
               </div>
 
-              <div className="py-6 flex items-baseline justify-between">
-                <div>
-                  <h4 className="font-serif text-2xl font-bold text-[#14213D]">
-                    {t('Друга половина 20. вијека')}
-                  </h4>
-                  <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
-                    {t('Ћопић, Капор, Кољевић, Капиџић-Хаџић, Братић, Ного')}
-                  </p>
-                </div>
-                <span className="font-serif text-2xl font-bold text-[#B3202A] tabular-nums">
-                  {stats.periodCounts['друга половина 20. вијека']} {t('аутора')}
-                </span>
+              <div className="py-6">
+                <h4 className="font-serif text-2xl font-bold text-[#14213D]">
+                  {t('Друга половина 20. вијека')}
+                </h4>
+                <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
+                  {t('Ћопић, Капор, Кољевић, Капиџић-Хаџић, Братић, Ного')}
+                </p>
               </div>
             </div>
           </div>

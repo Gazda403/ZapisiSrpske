@@ -287,80 +287,85 @@ export default function FeaturedWorksCarousel({ works }: FeaturedWorksCarouselPr
                     </div>
 
                     <div className="relative z-10 pt-4 sm:pt-8">
-                      {/* Work Title with Mask Reveal */}
-                      <div className="overflow-hidden pb-2 mb-3 sm:mb-4">
-                        <h3
-                          ref={isActive ? slideTitleRef : undefined}
-                          className="font-serif font-bold text-[#14213D] leading-[0.92] tracking-tight break-words"
-                          style={{
-                            fontSize: 'clamp(2.5rem, 7.5vw, 6.8rem)',
-                          }}
-                        >
-                          {t(work.title)}
-                        </h3>
-                      </div>
+                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16">
+                        {/* Left / Main text side */}
+                        <div className="flex-1 min-w-0">
+                          {/* Work Title with Mask Reveal */}
+                          <div className="overflow-hidden pb-2 mb-3 sm:mb-4">
+                            <h3
+                              ref={isActive ? slideTitleRef : undefined}
+                              className="font-serif font-bold text-[#14213D] leading-[0.92] tracking-tight break-words"
+                              style={{
+                                fontSize: 'clamp(2.4rem, 6.2vw, 5.8rem)',
+                              }}
+                            >
+                              {t(work.title)}
+                            </h3>
+                          </div>
 
-                      {/* Thin Red Hairline Autoplay Progress Bar */}
-                      <div className="w-full max-w-2xl h-[2px] bg-[#14213D]/15 overflow-hidden mb-6 sm:mb-8">
-                        <div
-                          className="h-full bg-[#B3202A] transition-all duration-75"
-                          style={{
-                            width: isActive ? `${progress}%` : '0%',
-                          }}
-                        />
-                      </div>
+                          {/* Thin Red Hairline Autoplay Progress Bar */}
+                          <div className="w-full max-w-2xl h-[2px] bg-[#14213D]/15 overflow-hidden mb-6 sm:mb-8">
+                            <div
+                              className="h-full bg-[#B3202A] transition-all duration-75"
+                              style={{
+                                width: isActive ? `${progress}%` : '0%',
+                              }}
+                            />
+                          </div>
 
-                      {/* Author Name, Year and Factual Note */}
-                      <div
-                        ref={isActive ? slideMetaRef : undefined}
-                        className="max-w-2xl"
-                      >
-                        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-4">
-                          <span className="font-serif text-2xl sm:text-3xl text-[#B3202A] font-semibold">
-                            {t(work.authorName)}
-                          </span>
-                          <span className="font-serif text-xl sm:text-2xl text-[#14213D] tabular-nums font-medium">
-                            {work.year ? `(${work.year})` : ''}
-                          </span>
+                          {/* Author Name, Year and Factual Note */}
+                          <div
+                            ref={isActive ? slideMetaRef : undefined}
+                            className="max-w-2xl"
+                          >
+                            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-4">
+                              <span className="font-serif text-2xl sm:text-3xl text-[#B3202A] font-semibold">
+                                {t(work.authorName)}
+                              </span>
+                              <span className="font-serif text-xl sm:text-2xl text-[#14213D] tabular-nums font-medium">
+                                {work.year ? `(${work.year})` : ''}
+                              </span>
+                            </div>
+
+                            {/* Note: Strictly ONE factual line */}
+                            {work.note && work.note.trim() !== '' && (
+                              <p className="font-body text-base sm:text-xl text-[#5C677D] leading-relaxed mb-8">
+                                {t(work.note)}
+                              </p>
+                            )}
+
+                            {/* Button/Link to Author's Biography */}
+                            <div className="pt-2">
+                              <Link
+                                href={`/pisci/${work.authorSlug}`}
+                                className="inline-flex items-center text-xs sm:text-sm font-sans tracking-widest uppercase text-[#14213D] hover:text-[#B3202A] transition-colors link-draw py-1 font-semibold"
+                              >
+                                <span>{t('Отвори биографију аутора')}</span>
+                                <span className="ml-2 font-mono">→</span>
+                              </Link>
+                            </div>
+                          </div>
                         </div>
 
-                        {/* Note: Strictly ONE factual line */}
-                        {work.note && work.note.trim() !== '' && (
-                          <p className="font-body text-base sm:text-xl text-[#5C677D] leading-relaxed mb-8">
-                            {t(work.note)}
-                          </p>
-                        )}
-
-                        {/* Licensed Cover if present, otherwise clean typography */}
+                        {/* Right side: Tall Licensed Cover if present */}
                         {work.cover && (
-                          <div className="mb-6 max-w-[220px]">
-                            <div className="relative aspect-[2/3] w-full border border-[#14213D]/20 overflow-hidden">
+                          <div className="flex-shrink-0 w-44 sm:w-56 lg:w-60 xl:w-72">
+                            <div className="relative aspect-[2/3] w-full bg-[#14213D]/5 border border-[#14213D]/15 overflow-hidden shadow-sm">
                               <Image
                                 src={work.cover}
                                 alt={`Корице: ${work.title}`}
                                 fill
-                                sizes="220px"
+                                sizes="(max-width: 768px) 176px, (max-width: 1024px) 224px, 288px"
                                 className="object-cover"
                               />
                             </div>
                             {work.coverCredit && (
-                              <p className="font-sans text-[10px] text-[#5C677D] mt-1">
+                              <p className="font-sans text-[11px] text-[#5C677D] mt-2 leading-tight">
                                 {t(work.coverCredit)}
                               </p>
                             )}
                           </div>
                         )}
-
-                        {/* Button/Link to Author's Biography */}
-                        <div className="pt-2">
-                          <Link
-                            href={`/pisci/${work.authorSlug}`}
-                            className="inline-flex items-center text-xs sm:text-sm font-sans tracking-widest uppercase text-[#14213D] hover:text-[#B3202A] transition-colors link-draw py-1 font-semibold"
-                          >
-                            <span>{t('Отвори биографију аутора')}</span>
-                            <span className="ml-2 font-mono">→</span>
-                          </Link>
-                        </div>
                       </div>
                     </div>
                   </div>
