@@ -28,3 +28,19 @@ export interface Writer {
   verified: boolean;
 }
 
+export interface FeaturedWork {
+  title: string;
+  authorSlug: string;
+  year: number | string | null;
+  note: string;
+  cover: string | null;
+  coverCredit: string | null;
+  verified: boolean;
+}
+
+export interface ResolvedFeaturedWork extends FeaturedWork {
+  authorName: string;
+  authorBirthYear: number;
+  authorDeathYear: number;
+}
+

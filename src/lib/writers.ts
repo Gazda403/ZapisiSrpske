@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Writer } from './types';
+import { Writer, FeaturedWork, ResolvedFeaturedWork } from './types';
 
 // Редослед писаца по периодима као што је наведено у захтјеву
 export const CANONICAL_SLUGS = [
@@ -100,5 +100,29 @@ export function getAdjacentWriters(slug: string) {
     prev: writers[prevIndex],
     next: writers[nextIndex],
   };
+}
+
+export function getFeaturedWorks(): ResolvedFeaturedWork[] {
+  const filePath = path.join(process.cwd(), 'content', 'featured-works.json');
+  if (!fs.existsSync(filePath)) return [];
+
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const items = JSON.parse(raw) as FeaturedWork[];
+
+  const writers = getAllWriters();
+  const writersMap = new Map(writers.map((w) => [w.slug, w]));
+
+  return items
+    .filter((item) => item.verified === true)
+    .map((item) => {
+      const writer = writersMap.get(item.authorSlug);
+      return {
+        ...item,
+        authorName: writer ? writer.name : '',
+        authorBirthYear: writer ? writer.birthYear : 0,
+        authorDeathYear: writer ? writer.deathYear : 0,
+      };
+    })
+    .filter((item) => Boolean(item.authorName));
 }
 

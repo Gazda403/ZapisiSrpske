@@ -1,0 +1,92 @@
+[
+  {
+    "title": "На Дрини ћуприја",
+    "authorSlug": "ivo-andric",
+    "year": 1945,
+    "note": "Романсијерска хроника вишеградске касабе и моста на Дрини кроз четири вијека.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Јазавац пред судом",
+    "authorSlug": "petar-kocic",
+    "year": 1904,
+    "note": "Драмска сатира о сукобу Давида Штрпца са аустроугарским судом у Бањој Луци.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Плаве легенде",
+    "authorSlug": "jovan-ducic",
+    "year": 1908,
+    "note": "Збирка лирских пјесама у прози настала у Женеви.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Емина",
+    "authorSlug": "aleksa-santic",
+    "year": 1902,
+    "note": "Лирска пјесма први пут објављена у мостарском часопису „Коло“.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Орлови рано лете",
+    "authorSlug": "branko-copic",
+    "year": 1957,
+    "note": "Роман о дјечијој дружини Јованчета у селу Липово под Грмечом 1941. године.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Стојан Мутикаша",
+    "authorSlug": "svetozar-corovic",
+    "year": 1907,
+    "note": "Социјални роман о животу сеоског младића у мостарској трговачкој чаршији.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Уна",
+    "authorSlug": "momo-kapor",
+    "year": 1981,
+    "note": "Роман о београдском професору Мишелу Бабићу и студенткињи Уни Војводић.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Почетак буне против дахија",
+    "authorSlug": "filip-visnjic",
+    "year": 1815,
+    "note": "Епска народна пјесма коју је у манастиру Шишатовац 1815. забиљежио Вук Караџић.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Народни учитељ",
+    "authorSlug": "vaso-pelagic",
+    "year": 1879,
+    "note": "Приручник народне медицине, здравственог васпитања и пољопривреде.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  },
+  {
+    "title": "Башта сљезове боје",
+    "authorSlug": "branko-copic",
+    "year": 1970,
+    "note": "Аутобиографска збирка приповједака посвећена Зији Диздаревићу.",
+    "cover": null,
+    "coverCredit": null,
+    "verified": true
+  }
+]
