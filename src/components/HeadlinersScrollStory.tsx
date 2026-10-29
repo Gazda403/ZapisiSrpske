@@ -13,6 +13,7 @@ interface HeadlinerData {
   birthPlace: string;
   highlightYear: number;
   oneSentenceBio: string;
+  quote: string;
   image: string;
   placeName: string;
   placeCredit: string;
@@ -29,6 +30,7 @@ const HEADLINERS: HeadlinerData[] = [
     birthPlace: 'Долац код Травника (одрастао у Вишеграду)',
     highlightYear: 1892,
     oneSentenceBio: 'Велики српски књижевник, дипломата и једини југословенски добитник Нобелове награде за књижевност (1961).',
+    quote: '„Чудно је како је мало потребно да будемо сретни и још чудније како нам често баш то мало недостаје.“',
     image: '/images/visegrad.jpg',
     placeName: 'Вишеград — Мост Мехмед-паше Соколовића на Дрини',
     placeCredit: 'Фотографија: Pudelek (Marcin Szala) / Wikimedia Commons',
@@ -43,6 +45,7 @@ const HEADLINERS: HeadlinerData[] = [
     birthPlace: 'Требиње',
     highlightYear: 1874,
     oneSentenceBio: 'Један од најзначајнијих српских лиричара, есејиста и дипломата чије је дјело поставило врхунце српског модернизма.',
+    quote: '„Човјек који није храбар не може бити ни поштен, јер за поштење су потребне жртве какве кукавица не умије да поднесе...“',
     image: '/images/places/jovan-ducic.jpg',
     placeName: 'Требиње — Херцеговачка Грачаница на брду Црквина',
     placeCredit: 'Задужбина Јована Дучића у Требињу',
@@ -57,6 +60,7 @@ const HEADLINERS: HeadlinerData[] = [
     birthPlace: 'Стричићи на Змијању код Бање Луке',
     highlightYear: 1877,
     oneSentenceBio: 'Великан српске крајишке прозе, бунтовник и народни трибун који је снагом змијањског језика овјековјечио судбину човјека.',
+    quote: '„Ко искрено и страсно љуби Истину, Слободу и Отаџбину, слободан је и неустрашив као Бог, а презрен и гладан као пас.”',
     image: '/images/places/petar-kocic.jpg',
     placeName: 'Змијање — Стричићи, спомен-подручје и огњиште',
     placeCredit: 'Спомен-збирка Петар Кочић, Бања Лука',
@@ -71,6 +75,7 @@ const HEADLINERS: HeadlinerData[] = [
     birthPlace: 'Хашани код Босанске Крупе (Подгрмеч)',
     highlightYear: 1915,
     oneSentenceBio: 'Најчитанији и најомиљенији српски приповједач, пјесник и романсијер који је опјевао подгрмечки свијет баште сљезове боје.',
+    quote: '„Лутаћеш дуго свијетом бијелим, са витешким жаром, но једнога дана кораком невеселим, вратићеш се дому старом.“',
     image: '/images/places/branko-copic.jpg',
     placeName: 'Крупа на Уни — Хашани и воденица дједа Тривуна',
     placeCredit: 'Завичајно друштво Бранко Ћопић Хашани',
@@ -170,9 +175,15 @@ export default function HeadlinersScrollStory() {
                   {t(headliner.name)}
                 </h2>
 
-                <p className="font-body text-base sm:text-xl text-[#14213D] leading-relaxed max-w-xl mb-8">
+                <p className="font-body text-base sm:text-xl text-[#14213D] leading-relaxed max-w-xl mb-6">
                   {t(headliner.oneSentenceBio)}
                 </p>
+
+                {headliner.quote && (
+                  <blockquote className="my-5 pl-4 border-l-2 border-[#B3202A]/40 text-[#5C677D] font-body italic text-xs sm:text-sm leading-relaxed max-w-lg">
+                    {t(headliner.quote)}
+                  </blockquote>
+                )}
 
                 <div>
                   <Link

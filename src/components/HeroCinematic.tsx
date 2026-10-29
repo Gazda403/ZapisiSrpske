@@ -75,15 +75,12 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
       </div>
 
       {/* Top micro status / archive coordinates */}
-      <div className="relative z-10 w-full pt-6 px-4 sm:px-8 lg:px-12 flex justify-between items-center text-[11px] sm:text-xs font-sans tracking-widest uppercase text-[#FBFAF7]/90">
+      <div className="relative z-10 w-full pt-6 px-4 sm:px-8 lg:px-12 flex items-center text-[11px] sm:text-xs font-sans tracking-widest uppercase text-[#FBFAF7]/90">
         <div className="flex items-center space-x-2 sm:space-x-3">
           <span className="inline-block w-2 h-2 bg-[#B3202A] flex-shrink-0" />
           <span>№ 01 • {t('ДИГИТАЛНИ АРХИВ')}</span>
           <span className="hidden sm:inline text-[#FBFAF7]/60">•</span>
           <span className="hidden sm:inline tabular-nums">{yearRange}</span>
-        </div>
-        <div className="tabular-nums">
-          <span>{totalWriters} {t('КАНОНСКИХ АУТОРА')}</span>
         </div>
       </div>
 
