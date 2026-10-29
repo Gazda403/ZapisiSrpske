@@ -62,7 +62,7 @@ export default function WriterDetailView({
         </div>
 
         {/* Top breadcrumbs & period badge */}
-        <div className="relative z-10 w-full pt-8 px-6 sm:px-12 max-w-[1400px] mx-auto flex items-center justify-between text-xs font-sans tracking-widest uppercase text-[#FBFAF7]/90">
+        <div className="relative z-10 w-full pt-6 sm:pt-8 px-4 sm:px-8 lg:px-12 max-w-[1400px] mx-auto flex items-center justify-between text-xs font-sans tracking-widest uppercase text-[#FBFAF7]/90">
           <nav aria-label="Путања до странице" className="flex items-center space-x-2">
             <Link href="/" className="hover:text-[#B3202A] transition-colors link-draw">
               {t('Почетна')}
@@ -78,19 +78,19 @@ export default function WriterDetailView({
         </div>
 
         {/* Bottom Hero: Huge name at 10vw overlapping image */}
-        <div className="relative z-10 w-full px-6 sm:px-12 max-w-[1400px] mx-auto pb-10 sm:pb-14">
-          <div className="flex items-center space-x-4 mb-3">
+        <div className="relative z-10 w-full px-4 sm:px-8 lg:px-12 max-w-[1400px] mx-auto pb-8 sm:pb-14">
+          <div className="flex items-center space-x-3 mb-2 sm:mb-3">
             <span className="w-2 h-2 bg-[#B3202A]" />
-            <span className="font-serif text-xl sm:text-2xl text-[#B3202A] tabular-nums font-semibold">
+            <span className="font-serif text-lg sm:text-2xl text-[#B3202A] tabular-nums font-semibold">
               {writer.birthYear}–{writer.deathYear}
             </span>
           </div>
 
-          <h1 className="font-serif font-bold text-[#FBFAF7] leading-[0.9] tracking-tight text-[11vw] sm:text-[9vw] lg:text-[8.5vw] mb-4">
+          <h1 className="font-serif font-bold text-[#FBFAF7] leading-[0.9] tracking-tight text-4xl sm:text-[9vw] lg:text-[8.5vw] mb-3 sm:mb-4 break-words">
             {t(writer.name)}
           </h1>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-4 border-t border-[#FBFAF7]/20 text-xs font-sans text-[#FBFAF7]/80">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-3 sm:pt-4 border-t border-[#FBFAF7]/20 text-xs font-sans text-[#FBFAF7]/80">
             <p>
               {t('Завичајно поријекло:')}{' '}
               <span className="text-[#FBFAF7] font-medium">{t(writer.birthPlace)}</span>
@@ -103,7 +103,7 @@ export default function WriterDetailView({
       </section>
 
       {/* 2. Main Content Layout: Offset Refined Portrait Frame + 680px Biography Column */}
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 pt-20 sm:pt-28">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 pt-16 sm:pt-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Left Column: Portrait in a refined hairline frame offset to the side */}
           <aside className="lg:col-span-4 lg:sticky lg:top-28">
@@ -232,7 +232,7 @@ export default function WriterDetailView({
       </div>
 
       {/* 3. Bottom Previous / Next Writer Navigation (Huge Type Links at 3xl-5xl) */}
-      <section className="max-w-[1400px] mx-auto px-6 sm:px-12 mt-32 pt-16 border-t border-[#14213D]/20">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 mt-24 sm:mt-32 pt-12 sm:pt-16 border-t border-[#14213D]/20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {prevWriter ? (
             <Link

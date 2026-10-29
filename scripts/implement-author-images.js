@@ -57,3 +57,4 @@ for (const item of mappings) {
 }
 
 console.log('\nAll author images implemented successfully.');
+

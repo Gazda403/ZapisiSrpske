@@ -120,7 +120,7 @@ export default function HeadlinersScrollStory() {
 
             {/* Editorial Text Column (50vw width, warm white background, no cards, giant outlined year) */}
             <div
-              className={`relative w-full lg:w-1/2 flex-1 lg:h-full bg-[#FBFAF7] flex flex-col justify-between p-6 sm:p-12 lg:p-16 xl:p-20 overflow-hidden ${
+              className={`relative w-full lg:w-1/2 flex-1 lg:h-full bg-[#FBFAF7] flex flex-col justify-between p-4 sm:p-8 lg:p-16 xl:p-20 overflow-hidden ${
                 isPhotoLeft ? 'lg:order-2' : 'lg:order-1'
               }`}
             >

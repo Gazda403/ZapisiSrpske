@@ -54,3 +54,4 @@ async function testScreenshots() {
 }
 
 testScreenshots().catch(e => { console.error(e); process.exit(1); });
+

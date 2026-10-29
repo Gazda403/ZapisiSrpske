@@ -46,16 +46,16 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
   }, [writers, selectedPeriod, searchQuery, t]);
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 sm:px-12 py-20 sm:py-32 bg-[#FBFAF7]">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-32 bg-[#FBFAF7]">
       {/* Page Header (No boxes!) */}
-      <div className="border-b border-[#14213D]/15 pb-12 mb-16">
+      <div className="border-b border-[#14213D]/15 pb-10 sm:pb-12 mb-12 sm:mb-16">
         <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-3 font-semibold">
           {t('Каталог аутора')} • № 02
         </span>
-        <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-[#14213D] leading-tight">
+        <h1 className="font-serif text-4xl sm:text-7xl lg:text-8xl font-bold text-[#14213D] leading-tight">
           {t('Писци и књижевници')}
         </h1>
-        <p className="font-body text-xl text-[#5C677D] mt-4 max-w-2xl leading-relaxed">
+        <p className="font-body text-lg sm:text-xl text-[#5C677D] mt-4 max-w-2xl leading-relaxed">
           {t('Комплетан биобиблиографски фонд обухвата 15 канонских стваралаца из три историјске епохе.')}
         </p>
       </div>
@@ -125,11 +125,11 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
                 </div>
               </div>
 
-              <div className="flex items-baseline space-x-6 pl-8 sm:pl-0">
+              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 pl-6 sm:pl-0">
                 <span className="font-mono text-xs text-[#5C677D] uppercase">
                   {t(writer.period)}
                 </span>
-                <span className="font-serif text-xl sm:text-2xl text-[#B3202A] tabular-nums font-semibold">
+                <span className="font-serif text-lg sm:text-2xl text-[#B3202A] tabular-nums font-semibold whitespace-nowrap">
                   {writer.birthYear}–{writer.deathYear}
                 </span>
                 <span className="text-[#14213D] group-hover:text-[#B3202A] group-hover:translate-x-1 transition-all">

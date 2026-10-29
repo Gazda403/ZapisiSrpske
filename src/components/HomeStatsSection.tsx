@@ -16,8 +16,8 @@ export default function HomeStatsSection({ stats }: HomeStatsProps) {
   const { t } = useScript();
 
   return (
-    <section className="py-36 sm:py-48 bg-[#FBFAF7] border-b border-[#14213D]/15" aria-labelledby="archive-mission-heading">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12">
+    <section className="py-24 sm:py-48 bg-[#FBFAF7] border-b border-[#14213D]/15" aria-labelledby="archive-mission-heading">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           {/* Left Column (5 columns): Period Classification */}
           <div className="lg:col-span-5 border-t border-b border-[#14213D]/20 py-10">

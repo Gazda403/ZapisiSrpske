@@ -70,7 +70,7 @@ export default function TimelineScrollLinked({ writers }: TimelineScrollLinkedPr
       className="relative w-full py-32 sm:py-44 bg-[#FBFAF7] border-b border-[#14213D]/15 overflow-hidden"
       aria-label="Временска линија аутора"
     >
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 mb-16 sm:mb-24">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 mb-12 sm:mb-24">
         {/* Section Heading (Type Scale 6-9rem) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-[#14213D]/15">
           <div>
@@ -122,7 +122,7 @@ export default function TimelineScrollLinked({ writers }: TimelineScrollLinkedPr
         {/* Horizontal scrollable track with nodes */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto no-scrollbar relative z-20 px-6 sm:px-12 pb-8 cursor-grab active:cursor-grabbing"
+          className="overflow-x-auto no-scrollbar relative z-20 px-4 sm:px-12 pb-8 cursor-grab active:cursor-grabbing"
         >
           <div className="flex space-x-14 sm:space-x-20 min-w-max pt-6">
             {sortedWriters.map((writer) => {

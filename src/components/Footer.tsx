@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useScript } from '@/context/ScriptContext';
 
 interface FooterProps {
@@ -13,8 +14,8 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
   const { t } = useScript();
 
   return (
-    <footer className="border-t border-[#14213D]/20 bg-[#FBFAF7] pt-20 pb-16">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12">
+    <footer className="border-t border-[#14213D]/20 bg-[#FBFAF7] pt-16 sm:pt-20 pb-14 sm:pb-16">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Ministry Funding Notice Strip (Shown ONCE at bottom per rule) */}
         <div className="border-t border-b border-[#14213D]/15 py-8 mb-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl">
@@ -26,15 +27,24 @@ export default function Footer({ totalWriters = 15, yearRange = '1767–2022' }:
             </p>
           </div>
           <div className="flex-shrink-0">
-            {/* Labeled empty placeholder box per rule */}
-            <div className="border border-dashed border-[#14213D]/40 bg-[#FBFAF7] px-6 py-4 text-center">
-              <span className="font-sans text-[11px] tracking-widest text-[#5C677D] uppercase block">
-                {t('[ РЕЗЕРВИСАНО МЈЕСТО ЗА ЗВАНИЧНИ ЛОГО ]')}
-              </span>
-              <span className="font-serif text-sm font-bold text-[#14213D] tracking-wide block mt-1">
+            <a
+              href="https://www.kultura.gov.rs"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Министарство културе Републике Србије"
+              className="flex items-center space-x-3"
+            >
+              <Image
+                src="/ministry-logo.jpg"
+                alt="Грб Министарства културе Републике Србије"
+                width={48}
+                height={58}
+                className="object-contain flex-shrink-0"
+              />
+              <span className="font-serif text-sm font-bold text-[#14213D] tracking-wide">
                 {t('Министарство културе Републике Србије')}
               </span>
-            </div>
+            </a>
           </div>
         </div>
 

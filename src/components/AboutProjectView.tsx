@@ -16,7 +16,7 @@ export default function AboutProjectView({
   const { t } = useScript();
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 sm:px-12 py-24 sm:py-36 bg-[#FBFAF7]">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-36 bg-[#FBFAF7]">
       {/* Header */}
       <div className="border-b border-[#14213D]/15 pb-12 mb-16">
         <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-3 font-semibold">

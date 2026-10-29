@@ -36,7 +36,7 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
       className="relative w-full py-32 sm:py-48 bg-[#FBFAF7] border-b border-[#14213D]/15 overflow-hidden"
       aria-label="Индекс канонских аутора"
     >
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-16 sm:mb-24 border-b border-[#14213D]/15">
           <div>
@@ -74,21 +74,21 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
                   className="flex flex-col md:flex-row md:items-center justify-between py-6 sm:py-8 lg:py-10 transition-colors focus-visible:outline-none"
                 >
                   {/* Left: Roman index + Author Name at 5-6rem */}
-                  <div className="flex items-baseline space-x-4 sm:space-x-8">
-                    <span className="font-mono text-xs sm:text-sm text-[#5C677D] tracking-widest tabular-nums">
+                  <div className="flex items-baseline space-x-3 sm:space-x-8">
+                    <span className="font-mono text-xs sm:text-sm text-[#5C677D] tracking-widest tabular-nums flex-shrink-0">
                       {idx < 9 ? `0${idx + 1}` : idx + 1}
                     </span>
-                    <span className="font-serif font-bold text-3xl sm:text-5xl lg:text-6xl text-[#14213D] group-hover:text-[#B3202A] transition-colors leading-none tracking-tight">
+                    <span className="font-serif font-bold text-2xl sm:text-5xl lg:text-6xl text-[#14213D] group-hover:text-[#B3202A] transition-colors leading-tight tracking-tight break-words">
                       {t(writer.name)}
                     </span>
                   </div>
 
                   {/* Right: Birthplace and Years in red tabular numerals */}
-                  <div className="flex items-center space-x-4 sm:space-x-8 mt-2 md:mt-0 pl-8 md:pl-0">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 md:mt-0 pl-6 sm:pl-8 md:pl-0">
                     <span className="font-sans text-xs sm:text-sm uppercase tracking-wider text-[#5C677D]">
                       {t(writer.birthPlace)}
                     </span>
-                    <span className="font-serif text-lg sm:text-2xl text-[#B3202A] tabular-nums font-semibold">
+                    <span className="font-serif text-base sm:text-2xl text-[#B3202A] tabular-nums font-semibold whitespace-nowrap">
                       {writer.birthYear}–{writer.deathYear}
                     </span>
                     <span className="text-[#14213D] group-hover:text-[#B3202A] group-hover:translate-x-1 transition-all text-xl">
