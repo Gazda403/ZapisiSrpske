@@ -75,7 +75,7 @@ export default function TimelineScrollLinked({ writers }: TimelineScrollLinkedPr
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-[#14213D]/15">
           <div>
             <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-3 font-semibold">
-              § 03 • {t('ХРОНОЛОШКИ ТОК КЊИЖЕВНОСТИ')}
+              § 04 • {t('ХРОНОЛОШКИ ТОК КЊИЖЕВНОСТИ')}
             </span>
             <h2 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-[#14213D] leading-tight">
               {t('Временска оса')}

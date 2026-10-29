@@ -22,7 +22,7 @@ export default function HomeStatsSection({ stats }: HomeStatsProps) {
           {/* Left Column (5 columns): Period Classification */}
           <div className="lg:col-span-5 border-t border-b border-[#14213D]/20 py-10">
             <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-4 font-semibold">
-              § 04 • {t('ПЕРИОДИЗАЦИЈА ГРАЂЕ')}
+              § 05 • {t('ПЕРИОДИЗАЦИЈА ГРАЂЕ')}
             </span>
             <h3 className="font-serif text-4xl sm:text-5xl font-bold text-[#14213D] mb-10 leading-tight">
               {t('Књижевне епохе')}
@@ -77,7 +77,7 @@ export default function HomeStatsSection({ stats }: HomeStatsProps) {
           <div className="lg:col-span-7 flex flex-col justify-between pt-2">
             <div>
               <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-4 font-semibold">
-                § 05 • {t('МИСИЈА АРХИВА')}
+                § 06 • {t('МИСИЈА АРХИВА')}
               </span>
               <h2 id="archive-mission-heading" className="font-serif text-4xl sm:text-6xl font-bold text-[#14213D] leading-tight mb-8">
                 {t('Очување српског језика и завичајног идентитета')}

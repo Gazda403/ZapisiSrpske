@@ -225,7 +225,7 @@ export default function FeaturedWorksCarousel({ works }: FeaturedWorksCarouselPr
         <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-8 mb-12 sm:mb-20 border-b border-[#14213D]/15 gap-4">
           <div>
             <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#B3202A] block mb-2 font-semibold">
-              § 02 • {t('ОДАБРАНА КЊИЖЕВНА ДЈЕЛА')}
+              § 03 • {t('ОДАБРАНА КЊИЖЕВНА ДЈЕЛА')}
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#14213D] leading-tight">
               {t('Десет канонских књига')}
@@ -424,3 +424,4 @@ export default function FeaturedWorksCarousel({ works }: FeaturedWorksCarouselPr
     </section>
   );
 }
+
