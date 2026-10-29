@@ -156,7 +156,7 @@ export default function TimelineScrollLinked({ writers }: TimelineScrollLinkedPr
                         alt={writer.name}
                         fill
                         sizes="64px"
-                        className="object-contain p-1.5"
+                        className="object-cover object-top"
                       />
                     </Link>
                   </div>

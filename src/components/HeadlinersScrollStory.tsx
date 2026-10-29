@@ -145,19 +145,30 @@ export default function HeadlinersScrollStory() {
 
               {/* Central Name & Bio Content */}
               <div className="relative z-10 my-auto py-6 sm:py-8">
-                <div className="mb-2 sm:mb-3">
-                  <span className="font-serif text-lg sm:text-2xl text-[#B3202A] tabular-nums font-semibold">
-                    {headliner.birthYear}–{headliner.deathYear}
-                  </span>
+                <div className="flex items-center space-x-5 mb-4">
+                  {/* Real Author Portrait */}
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-[#14213D] flex-shrink-0 bg-[#FBFAF7]">
+                    <Image
+                      src={`/portraits/${headliner.slug}.jpg`}
+                      alt={headliner.name}
+                      fill
+                      sizes="80px"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <div>
+                    <span className="font-serif text-lg sm:text-2xl text-[#B3202A] tabular-nums font-semibold block">
+                      {headliner.birthYear}–{headliner.deathYear}
+                    </span>
+                    <p className="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#5C677D]">
+                      {t('Завичај:')} <span className="text-[#14213D] font-medium">{t(headliner.birthPlace)}</span>
+                    </p>
+                  </div>
                 </div>
 
                 <h2 className="font-serif font-bold text-[#14213D] text-4xl sm:text-6xl xl:text-7xl leading-[0.95] tracking-tight mb-4">
                   {t(headliner.name)}
                 </h2>
-
-                <p className="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#5C677D] mb-5">
-                  {t('Завичај:')} <span className="text-[#14213D] font-medium">{t(headliner.birthPlace)}</span>
-                </p>
 
                 <p className="font-body text-base sm:text-xl text-[#14213D] leading-relaxed max-w-xl mb-8">
                   {t(headliner.oneSentenceBio)}

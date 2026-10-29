@@ -114,7 +114,7 @@ export default function WriterDetailView({
                   alt={`Портрет: ${writer.name}`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 380px"
-                  className="object-contain p-4"
+                  className="object-cover object-top"
                 />
               </div>
 

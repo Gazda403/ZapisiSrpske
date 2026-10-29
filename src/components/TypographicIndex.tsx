@@ -119,7 +119,7 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
                 alt={activeWriter.name}
                 fill
                 sizes="260px"
-                className="object-contain p-2"
+                className="object-cover object-top"
               />
             </div>
             <div className="pt-2 px-1 text-center">

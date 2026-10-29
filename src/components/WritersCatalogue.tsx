@@ -155,7 +155,7 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
                     alt={hoveredWriter.name}
                     fill
                     sizes="340px"
-                    className="object-contain p-4"
+                    className="object-cover object-top"
                   />
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-[#14213D] leading-tight">
