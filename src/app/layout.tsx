@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/visegrad.jpg',
+        url: '/images/hero-visegrad.jpg',
         width: 1200,
         height: 630,
         alt: 'ЗАПИСИ СРПСКЕ — Дигитални књижевни архив',
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: 'ЗАПИСИ СРПСКЕ — Дигитална ризница књижевног насљеђа Републике Српске',
     description:
       'Систематизовани биографски и библиографски подаци за 15 канонских писаца од 1767. до 2022. године.',
-    images: ['/images/visegrad.jpg'],
+    images: ['/images/hero-visegrad.jpg'],
   },
   robots: {
     index: true,

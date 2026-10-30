@@ -94,11 +94,11 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
       className="relative w-full h-screen min-h-[640px] overflow-hidden flex flex-col justify-between bg-[#14213D]"
       aria-label="Главни уводни екран"
     >
-      {/* 1. Full-bleed background photo of Višegrad bridge with slow Ken Burns zoom & parallax scrub */}
+      {/* 1. Full-bleed background photo of Višegrad & Andrićgrad with slow Ken Burns zoom & parallax scrub */}
       <div ref={bgPhotoRef} className="absolute inset-0 w-full h-full overflow-hidden will-change-transform">
         <Image
-          src="/images/visegrad.jpg"
-          alt="Мост Мехмед-паше Соколовића у Вишеграду"
+          src="/images/hero-visegrad.jpg"
+          alt="Вишеград — Андрићград и мост Мехмед-паше Соколовића на Дрини"
           fill
           priority
           sizes="100vw"
@@ -142,7 +142,7 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
               {t('ДИГИТАЛНА РИЗНИЦА КЊИЖЕВНОГ НАСЉЕЂА РЕПУБЛИКЕ СРПСКЕ')}
             </p>
             <p className="font-body text-sm sm:text-base text-[#FBFAF7]/80 mt-1">
-              {t('Вишеград — Мост на Дрини')} · {t('Завичајни пејзаж Иве Андрића')}
+              {t('Вишеград — Андрићград и мост на Дрини')} · {t('Завичајни пејзаж Иве Андрића')}
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
           </span>
         </div>
         <div className="font-sans text-[11px] text-[#FBFAF7]/60">
-          <span>{t('Фотографија: Pudelek / Wikimedia Commons')}</span>
+          <span>{t('Фотографија: Андрићград и мост Мехмед-паше Соколовића, Вишеград')}</span>
         </div>
       </div>
     </section>
