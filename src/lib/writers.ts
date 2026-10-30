@@ -6,6 +6,8 @@ import { Writer, FeaturedWork, ResolvedFeaturedWork } from './types';
 export const CANONICAL_SLUGS = [
   // 19. вијек
   'filip-visnjic',
+  'staka-skenderova',
+  'nicifor-ducic',
   'vaso-pelagic',
   'aleksa-santic',
   'svetozar-corovic',
@@ -21,6 +23,7 @@ export const CANONICAL_SLUGS = [
   'svetozar-koljevic',
   'nasiha-kapidzic-hadzic',
   'radoslav-bratic',
+  'vidosava-raic',
   'rajko-petrov-nogo',
 ];
 

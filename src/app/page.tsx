@@ -17,7 +17,7 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Канонски српски писци Републике Српске',
-    description: '15 канонских књижевника у дигиталној ризници ЗАПИСИ СРПСКЕ',
+    description: 'Канонски српски књижевници у дигиталној ризници ЗАПИСИ СРПСКЕ',
     numberOfItems: writers.length,
     itemListElement: writers.map((w, index) => ({
       '@type': 'ListItem',

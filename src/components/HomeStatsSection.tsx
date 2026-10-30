@@ -65,7 +65,7 @@ export default function HomeStatsSection({ stats }: HomeStatsProps) {
                   {t('19. вијек')}
                 </h4>
                 <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
-                  {t('Вишњић, Пелагић, Шантић, Ћоровић')}
+                  {t('Вишњић, Скендерова, Н. Дучић, Пелагић, Шантић, Ћоровић')}
                 </p>
               </div>
 
@@ -83,7 +83,7 @@ export default function HomeStatsSection({ stats }: HomeStatsProps) {
                   {t('Друга половина 20. вијека')}
                 </h4>
                 <p className="font-sans text-xs sm:text-sm text-[#5C677D] mt-1">
-                  {t('Ћопић, Капор, Кољевић, Капиџић-Хаџић, Братић, Ного')}
+                  {t('Ћопић, Капор, Кољевић, Капиџић-Хаџић, Братић, Ного, Раич')}
                 </p>
               </div>
             </div>

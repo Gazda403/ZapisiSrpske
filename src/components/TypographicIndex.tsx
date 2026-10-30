@@ -80,7 +80,7 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
           </div>
           <div className="mt-4 md:mt-0 font-sans text-xs sm:text-sm text-[#5C677D] max-w-md">
             <p>
-              {t('Комплетан списак свих 15 канонских писаца архивираних у фонду. Поставите курсор изнад имена за приказ портрета.')}
+              {t('Комплетан списак свих')} {writers.length} {t('канонских писаца архивираних у фонду. Поставите курсор изнад имена за приказ портрета.')}
             </p>
           </div>
         </div>

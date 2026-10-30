@@ -166,6 +166,24 @@ const WRITER_PLACES_MAP: Record<string, PlacePhotoInfo> = {
     credit: 'Фотографија: ArhistefoBL / Wikimedia Commons',
     license: 'CC0 Јавно власништво',
   },
+  'staka-skenderova': {
+    image: '/images/places/staka-skenderova.jpg',
+    placeName: 'Сарајево — Поглед на Миљацку и старо језгро града',
+    credit: 'Архивска фото-документација',
+    license: '',
+  },
+  'vidosava-raic': {
+    image: '/images/places/vidosava-raic.jpg',
+    placeName: 'Прњавор — Поглед на завичајни крај под Љубићем',
+    credit: 'Фото-документација завичајног краја',
+    license: '',
+  },
+  'nicifor-ducic': {
+    image: '/images/places/nicifor-ducic.jpg',
+    placeName: 'Требиње — Долина Требишњице и манастир Дужи',
+    credit: 'Задужбинска збирка епархије захумско-херцеговачке',
+    license: '',
+  },
 };
 
 export function getWriterPlacePhoto(slug: string): PlacePhotoInfo {
