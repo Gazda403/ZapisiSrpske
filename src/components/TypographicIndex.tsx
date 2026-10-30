@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { Writer } from '@/lib/types';
 import { useScript } from '@/context/ScriptContext';
 import { getWriterPlacePhoto } from '@/lib/places';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface TypographicIndexProps {
   writers: Writer[];
@@ -25,8 +27,36 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !containerRef.current) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.index-writer-row',
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.05,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const activeWriter = writers.find((w) => w.slug === hoveredSlug);
@@ -66,7 +96,7 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
                 key={writer.slug}
                 onMouseEnter={() => setHoveredSlug(writer.slug)}
                 onMouseLeave={() => setHoveredSlug(null)}
-                className={`group relative transition-opacity duration-300 ${
+                className={`index-writer-row group relative transition-opacity duration-300 will-change-transform ${
                   isDimmed ? 'opacity-25' : 'opacity-100'
                 }`}
               >
@@ -108,10 +138,10 @@ export default function TypographicIndex({ writers }: TypographicIndexProps) {
         const placePhoto = getWriterPlacePhoto(activeWriter.slug);
         return (
           <div
-            className="fixed pointer-events-none z-50 transition-transform duration-100 ease-out hidden lg:block"
+            className="fixed pointer-events-none z-50 transition-all duration-150 ease-out hidden lg:block drop-shadow-md"
             style={{
-              left: `${mousePos.x + 32}px`,
-              top: `${mousePos.y - 170}px`,
+              left: `${mousePos.x + 28}px`,
+              top: `${mousePos.y - 160}px`,
               width: '280px',
             }}
           >

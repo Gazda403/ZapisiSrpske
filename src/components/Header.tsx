@@ -10,11 +10,28 @@ export default function Header() {
   const pathname = usePathname();
   const { script, toggleScript, t } = useScript();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Close mobile menu whenever pathname changes
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  // Track scroll progress for the top hairline bar & subtle header blur
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
+      }
+      setIsScrolled(window.scrollY > 25);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { href: '/', label: 'Почетна', num: '01' },
@@ -23,7 +40,21 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FBFAF7] border-b border-[#14213D]/15 w-full">
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#FBFAF7]/95 backdrop-blur-md border-b border-[#14213D]/20 shadow-[0_2px_12px_rgba(20,33,61,0.04)]'
+          : 'bg-[#FBFAF7] border-b border-[#14213D]/15'
+      }`}
+    >
+      {/* Editorial reading progress line across top of viewport */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent overflow-hidden pointer-events-none z-50">
+        <div
+          className="h-full bg-[#B3202A] transition-all duration-100 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo / Brand mark */}

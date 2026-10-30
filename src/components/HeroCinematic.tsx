@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useScript } from '@/context/ScriptContext';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface HeroCinematicProps {
   yearRange: string;
@@ -14,6 +15,8 @@ interface HeroCinematicProps {
 export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematicProps) {
   const { t } = useScript();
   const heroRef = useRef<HTMLDivElement>(null);
+  const bgPhotoRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
   const titleLine1Ref = useRef<HTMLSpanElement>(null);
   const titleLine2Ref = useRef<HTMLSpanElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
@@ -22,6 +25,8 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
       // Line by line mask reveal animation
@@ -49,6 +54,35 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
           { opacity: 1, duration: 0.8, ease: 'power2.out' },
           '-=0.4'
         );
+
+      // Smooth scroll parallax on background photo
+      if (bgPhotoRef.current && heroRef.current) {
+        gsap.to(bgPhotoRef.current, {
+          yPercent: 20,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
+
+      // Smooth scroll depth on text content
+      if (heroContentRef.current && heroRef.current) {
+        gsap.to(heroContentRef.current, {
+          yPercent: -12,
+          opacity: 0.2,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -60,15 +94,15 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
       className="relative w-full h-screen min-h-[640px] overflow-hidden flex flex-col justify-between bg-[#14213D]"
       aria-label="Главни уводни екран"
     >
-      {/* 1. Full-bleed background photo of Višegrad bridge with slow Ken Burns zoom */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
+      {/* 1. Full-bleed background photo of Višegrad bridge with slow Ken Burns zoom & parallax scrub */}
+      <div ref={bgPhotoRef} className="absolute inset-0 w-full h-full overflow-hidden will-change-transform">
         <Image
           src="/images/visegrad.jpg"
           alt="Мост Мехмед-паше Соколовића у Вишеграду"
           fill
           priority
           sizes="100vw"
-          className="object-cover editorial-photo kenburns-photo"
+          className="object-cover editorial-photo kenburns-photo scale-105"
         />
         {/* Thin flat navy overlay at strictly 25% opacity for text legibility (no gradients!) */}
         <div className="absolute inset-0 bg-[#14213D] opacity-25 pointer-events-none" />
@@ -84,8 +118,8 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
         </div>
       </div>
 
-      {/* Center/Lower: Huge Title (12vw Cormorant Garamond, White) overlapping image */}
-      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto pb-8 sm:pb-12">
+      {/* Center/Lower: Huge Title overlapping image */}
+      <div ref={heroContentRef} className="relative z-10 w-full px-4 sm:px-8 lg:px-12 max-w-[1500px] mx-auto pb-8 sm:pb-12 will-change-transform">
         <div className="overflow-hidden mb-2">
           <h1 className="font-serif font-bold text-[#FBFAF7] leading-[0.88] tracking-tight text-[13vw] sm:text-[11vw] lg:text-[10.5vw]">
             <span className="block overflow-hidden py-1">

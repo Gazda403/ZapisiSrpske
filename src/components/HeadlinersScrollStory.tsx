@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScript } from '@/context/ScriptContext';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface HeadlinerData {
   slug: string;
@@ -86,16 +88,88 @@ const HEADLINERS: HeadlinerData[] = [
 
 export default function HeadlinersScrollStory() {
   const { t } = useScript();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !sectionRef.current) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const chapters = gsap.utils.toArray<HTMLElement>('.headliner-chapter');
+
+      chapters.forEach((chapter) => {
+        const yearElem = chapter.querySelector('.chapter-year-watermark');
+        const contentElem = chapter.querySelector('.chapter-content-box');
+        const photoElem = chapter.querySelector('.chapter-photo');
+
+        if (yearElem) {
+          gsap.fromTo(
+            yearElem,
+            { yPercent: 20 },
+            {
+              yPercent: -20,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: chapter,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1,
+              },
+            }
+          );
+        }
+
+        if (photoElem) {
+          gsap.fromTo(
+            photoElem,
+            { scale: 1 },
+            {
+              scale: 1.08,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: chapter,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1.5,
+              },
+            }
+          );
+        }
+
+        if (contentElem) {
+          gsap.fromTo(
+            contentElem,
+            { opacity: 0.35, y: 25 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: chapter,
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          );
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="poglavlja" className="relative w-full" aria-label="Канонска поглавља архива">
+    <section ref={sectionRef} id="poglavlja" className="relative w-full" aria-label="Канонска поглавља архива">
       {HEADLINERS.map((headliner, idx) => {
         const isPhotoLeft = idx % 2 === 0;
 
         return (
           <div
             key={headliner.slug}
-            className="relative lg:sticky lg:top-20 w-full min-h-screen lg:h-[calc(100vh-5rem)] lg:min-h-[640px] overflow-hidden flex flex-col lg:flex-row bg-[#FBFAF7] border-b border-[#14213D]/20"
+            className="headliner-chapter relative lg:sticky lg:top-20 w-full min-h-screen lg:h-[calc(100vh-5rem)] lg:min-h-[640px] overflow-hidden flex flex-col lg:flex-row bg-[#FBFAF7] border-b border-[#14213D]/20"
             style={{ zIndex: 10 + idx }}
           >
             {/* Visual Photo Column (50vw width, full height on desktop, bright editorial photo) */}
@@ -104,13 +178,15 @@ export default function HeadlinersScrollStory() {
                 isPhotoLeft ? 'lg:order-1' : 'lg:order-2'
               }`}
             >
-              <Image
-                src={headliner.image}
-                alt={headliner.placeName}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover editorial-photo transition-transform duration-700 hover:scale-105"
-              />
+              <div className="chapter-photo relative w-full h-full will-change-transform">
+                <Image
+                  src={headliner.image}
+                  alt={headliner.placeName}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover editorial-photo"
+                />
+              </div>
 
               {/* Edge credit line (Rule requirement: small type at edge, no cards) */}
               <div className="absolute bottom-4 left-4 right-4 z-10 flex justify-between items-end text-[11px] font-sans text-[#FBFAF7]/90 pointer-events-none">
@@ -132,7 +208,7 @@ export default function HeadlinersScrollStory() {
               {/* Giant outlined year behind text at 20vw */}
               <div
                 aria-hidden="true"
-                className="absolute right-0 sm:right-6 bottom-2 sm:bottom-6 select-none pointer-events-none font-serif font-bold text-outline-navy text-[28vw] lg:text-[17vw] leading-none z-0 tabular-nums opacity-40"
+                className="chapter-year-watermark absolute right-0 sm:right-6 bottom-2 sm:bottom-6 select-none pointer-events-none font-serif font-bold text-outline-navy text-[28vw] lg:text-[17vw] leading-none z-0 tabular-nums opacity-40 will-change-transform"
               >
                 {headliner.highlightYear}
               </div>
@@ -149,7 +225,7 @@ export default function HeadlinersScrollStory() {
               </div>
 
               {/* Central Name & Bio Content */}
-              <div className="relative z-10 my-auto py-6 sm:py-8">
+              <div className="chapter-content-box relative z-10 my-auto py-6 sm:py-8 will-change-transform">
                 <div className="flex items-center space-x-5 mb-4">
                   {/* Real Author Portrait */}
                   <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-[#14213D] flex-shrink-0 bg-[#FBFAF7]">
