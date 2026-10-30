@@ -96,7 +96,7 @@ export default function WriterDetailView({
               <span className="text-[#FBFAF7] font-medium">{t(placePhoto.placeName)}</span>
             </p>
             <p className="font-sans text-[11px] text-[#FBFAF7]/70">
-              {t(placePhoto.credit)} · {placePhoto.license}
+              {t(placePhoto.credit)}
             </p>
           </div>
         </div>
@@ -119,14 +119,10 @@ export default function WriterDetailView({
               </div>
 
               {/* Portrait metadata */}
-              <div className="pt-4 px-1 pb-1 text-xs font-sans text-[#5C677D] space-y-1 border-t border-[#14213D]/10 mt-3">
+              <div className="pt-4 px-1 pb-1 text-xs font-sans text-[#5C677D] border-t border-[#14213D]/10 mt-3">
                 <div className="flex justify-between">
                   <span>{t('Извор:')}</span>
                   <span className="text-[#14213D]">{t(writer.imageCredit)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>{t('Лиценца:')}</span>
-                  <span className="text-[#14213D] font-mono text-[11px]">{writer.imageLicense}</span>
                 </div>
               </div>
             </div>

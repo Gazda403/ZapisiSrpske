@@ -170,7 +170,7 @@ export default function HeroCinematic({ yearRange, totalWriters }: HeroCinematic
           </span>
         </div>
         <div className="font-sans text-[11px] text-[#FBFAF7]/60">
-          <span>{t('Фотографија: Pudelek / Wikimedia Commons · CC BY-SA 3.0')}</span>
+          <span>{t('Фотографија: Pudelek / Wikimedia Commons')}</span>
         </div>
       </div>
     </section>

@@ -189,12 +189,9 @@ export default function HeadlinersScrollStory() {
               </div>
 
               {/* Edge credit line (Rule requirement: small type at edge, no cards) */}
-              <div className="absolute bottom-4 left-4 right-4 z-10 flex justify-between items-end text-[11px] font-sans text-[#FBFAF7]/90 pointer-events-none">
+              <div className="absolute bottom-4 left-4 right-4 z-10 flex justify-start items-end text-[11px] font-sans text-[#FBFAF7]/90 pointer-events-none">
                 <span className="bg-[#14213D]/75 px-2.5 py-1">
                   {t(headliner.placeName)}
-                </span>
-                <span className="bg-[#14213D]/75 px-2 py-1 font-mono text-[10px]">
-                  {headliner.placeLicense}
                 </span>
               </div>
             </div>

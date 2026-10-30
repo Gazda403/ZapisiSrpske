@@ -113,7 +113,7 @@ export default function WritersCatalogue({ writers }: WritersCatalogueProps) {
               <span className="text-[#FBFAF7] font-medium">{t(currentHeroPhoto.placeName)}</span>
             </p>
             <p className="font-sans text-[11px] text-[#FBFAF7]/70">
-              {t(currentHeroPhoto.credit)} · {currentHeroPhoto.license}
+              {t(currentHeroPhoto.credit)}
             </p>
           </div>
         </div>
