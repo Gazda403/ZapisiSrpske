@@ -138,9 +138,9 @@ const WRITER_PLACES_MAP: Record<string, PlacePhotoInfo> = {
   },
   'radoslav-bratic': {
     image: '/images/places/radoslav-bratic.jpg',
-    placeName: 'Брестице код Билеће — Камени завичајни предио источне Херцеговине',
-    credit: 'Завичајни фонд Билећа',
-    license: 'Јавно власништво',
+    placeName: 'Билећа — Поглед на Билећко језеро и завичајни крајолик Радослава Братића',
+    credit: 'Фото-документација Билеће и Херцеговине',
+    license: '',
   },
   'dimitrije-mitrinovic': {
     image: '/images/places/dimitrije-mitrinovic.jpg',
@@ -174,7 +174,7 @@ const WRITER_PLACES_MAP: Record<string, PlacePhotoInfo> = {
   },
   'vidosava-raic': {
     image: '/images/places/vidosava-raic.jpg',
-    placeName: 'Прњавор — Поглед на завичајни крај под Љубићем',
+    placeName: 'Прњавор — Панорамски поглед на завичајни крај под Љубићем',
     credit: 'Фото-документација завичајног краја',
     license: '',
   },
